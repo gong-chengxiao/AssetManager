@@ -160,13 +160,42 @@
     <value>关于</value>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>本程序是2022年秋季学期“数据库原理实验”课程大作业
-作者：龚诚孝 2020301969</value>
+    <value>2022年秋季学期“数据库原理实验”课程大作业</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
-    <value>Privacy Statement</value>
+    <value>GitHub</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
-    <value>https://YourPrivacyUrlGoesHere/</value>
+    <value>https://github.com/cnyuan100/AssetManager</value>
+  </data>
+  <data name="Home_AfternoonGreeting" xml:space="preserve">
+    <value>下午好</value>
+  </data>
+  <data name="Home_EveningGreeting" xml:space="preserve">
+    <value>晚上好</value>
+  </data>
+  <data name="Home_MorningGreeting" xml:space="preserve">
+    <value>早上好</value>
+  </data>
+  <data name="Home_PasswaordTextBox.Header" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Home_PasswaordTextBox.PlaceholderText" xml:space="preserve">
+    <value>输入数据库密码</value>
+  </data>
+  <data name="Home_UserTextBox.Header" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Home_UserTextBox.PlaceholderText" xml:space="preserve">
+    <value>输入数据库用户名</value>
+  </data>
+  <data name="Settings_AuthorDescription.Content" xml:space="preserve">
+    <value>2020301969 龚诚孝</value>
+  </data>
+  <data name="Settings_AuthorDescription.NavigateUri" xml:space="preserve">
+    <value>https://github.com/cnyuan100</value>
+  </data>
+  <data name="Home_LoginButton.Content" xml:space="preserve">
+    <value>登录</value>
   </data>
 </root>
