@@ -1,27 +1,16 @@
-﻿*Recommended Markdown Viewer: [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)*
+﻿*AssetManager 学校固定资产管理系统*
 
-## Getting Started
+数据库原理实验课程大作业，2022秋季学期
 
-Browse and address `TODO:` comments in `View -> Task List` to learn the codebase and understand next steps for turning the generated code into production code.
+NWPU，2022年12月
 
-Explore the [WinUI Gallery](https://www.microsoft.com/store/productId/9P3JFPWWDZRC) to learn about available controls and design patterns.
+## 简介
 
-Relaunch Template Studio to modify the project by right-clicking on the project in `View -> Solution Explorer` then selecting `Add -> New Item (Template Studio)`.
+学校固定资产的全生命周期管理系统
 
-## Publishing
+* **功能：**记录固定资产记录、维护信息、报废信息，提供整体统计报表数据，提醒近期变更和未来几天的维护、报废安排。
+* **安全：**提供基础的数据库防注入、密码加密、数据库备份功能。
+* **设计：**使用WinUI 3风格界面，操作简单流畅。
+* **开发：**MVVM框架。
 
-For projects with MSIX packaging, right-click on the application project and select `Package and Publish -> Create App Packages...` to create an MSIX package.
-
-For projects without MSIX packaging, follow the [deployment guide](https://docs.microsoft.com/windows/apps/windows-app-sdk/deploy-unpackaged-apps) or add the `Self-Contained` Feature to enable xcopy deployment.
-
-## CI Pipelines
-
-See [README.md](https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/pipelines/README.md) for guidance on building and testing projects in CI pipelines.
-
-## Changelog
-
-See [releases](https://github.com/microsoft/TemplateStudio/releases) and [milestones](https://github.com/microsoft/TemplateStudio/milestones).
-
-## Feedback
-
-Bugs and feature requests should be filed at https://aka.ms/templatestudio.
+系统要求：Windows 10 1809 (build 17763)及以上或Windows 11，x86、x64或arm64架构。需要安装[.NET Desktop Runtime 6.0.11](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) 以上以及[Windows App SDK](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads)，注意在安装时选择对应的架构。
