@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "AssetManager (Unpackaged)": {
+        "commandName": "Project"
+      },
+      "AssetManager (Package)": {
+        "commandName": "MsixPackage"
+      }
+    }
+}
