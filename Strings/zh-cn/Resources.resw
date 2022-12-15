@@ -177,25 +177,91 @@
   <data name="Home_MorningGreeting" xml:space="preserve">
     <value>早上好</value>
   </data>
-  <data name="Home_PasswaordTextBox.Header" xml:space="preserve">
-    <value>密码</value>
-  </data>
-  <data name="Home_PasswaordTextBox.PlaceholderText" xml:space="preserve">
-    <value>输入数据库密码</value>
-  </data>
-  <data name="Home_UserTextBox.Header" xml:space="preserve">
-    <value>用户名</value>
-  </data>
-  <data name="Home_UserTextBox.PlaceholderText" xml:space="preserve">
-    <value>输入数据库用户名</value>
-  </data>
   <data name="Settings_AuthorDescription.Content" xml:space="preserve">
     <value>2020301969 龚诚孝</value>
   </data>
   <data name="Settings_AuthorDescription.NavigateUri" xml:space="preserve">
     <value>https://github.com/cnyuan100</value>
   </data>
+  <data name="AssetTable_AssetID.Header" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="AssetTable_AssetName.Header" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="AssetTable_AssetPurchaseDate.Header" xml:space="preserve">
+    <value>购置日期</value>
+  </data>
+  <data name="AssetTable_AssetPurchaseOrderNumber.Header" xml:space="preserve">
+    <value>订单号</value>
+  </data>
+  <data name="AssetTable_AssetPurchasePrice.Header" xml:space="preserve">
+    <value>购置单价</value>
+  </data>
+  <data name="AssetTable_AssetSerialNumber.Header" xml:space="preserve">
+    <value>产品序列号</value>
+  </data>
+  <data name="AssetTable_AssetSpecification.Header" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="AssetTable_AssetType.Header" xml:space="preserve">
+    <value>种类</value>
+  </data>
+  <data name="AssetTable_AssetVendorID.Header" xml:space="preserve">
+    <value>供应商编号</value>
+  </data>
+  <data name="AssetTable_CommitButton.Content" xml:space="preserve">
+    <value>提交更改</value>
+  </data>
+  <data name="AssetTable_DateFilter" xml:space="preserve">
+    <value>购置日期</value>
+  </data>
+  <data name="AssetTable_Filter.Label" xml:space="preserve">
+    <value>过滤</value>
+  </data>
+  <data name="AssetTable_GetterID.Header" xml:space="preserve">
+    <value>领取人ID</value>
+  </data>
+  <data name="AssetTable_LastHalfYear.Text" xml:space="preserve">
+    <value>最近半年</value>
+  </data>
+  <data name="AssetTable_LastOneMonth.Text" xml:space="preserve">
+    <value>最近一个月</value>
+  </data>
+  <data name="AssetTable_LastoneYear.Text" xml:space="preserve">
+    <value>最近一年</value>
+  </data>
+  <data name="AssetTable_LastThreeMonth.Text" xml:space="preserve">
+    <value>最近三个月</value>
+  </data>
+  <data name="AssetTable_RemoveFilter.Text" xml:space="preserve">
+    <value>取消过滤</value>
+  </data>
+  <data name="AssetTable_UserID.Header" xml:space="preserve">
+    <value>使用人ID</value>
+  </data>
+  <data name="AssetTypeText" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="AssetType_Big" xml:space="preserve">
+    <value>大</value>
+  </data>
+  <data name="AssetType_Mid" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="AssetType_Small" xml:space="preserve">
+    <value>小</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Dialog_ErrorTittle" xml:space="preserve">
+    <value>错误</value>
+  </data>
   <data name="Home_LoginButton.Content" xml:space="preserve">
     <value>登录</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>确认</value>
   </data>
 </root>

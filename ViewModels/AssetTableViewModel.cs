@@ -3,32 +3,41 @@
 using AssetManager.Contracts.ViewModels;
 using AssetManager.Core.Contracts.Services;
 using AssetManager.Core.Models;
-
+using AssetManager.Helpers;
+using AssetManager.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace AssetManager.ViewModels;
 
 public class AssetTableViewModel : ObservableRecipient, INavigationAware
 {
-    private readonly ISampleDataService _sampleDataService;
+    private readonly IAssetDataService _assetDataService;
+    
 
-    public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+    public ObservableCollection<SchoolAsset> Source { get; } = new ObservableCollection<SchoolAsset>();
 
-    public AssetTableViewModel(ISampleDataService sampleDataService)
+    public AssetTableViewModel(IAssetDataService assetDataService)
     {
-        _sampleDataService = sampleDataService;
+        _assetDataService = assetDataService;
     }
 
     public async void OnNavigatedTo(object parameter)
     {
         Source.Clear();
+        try
+        {      
+            var data = await _assetDataService.GetGridDataAsync();
 
-        // TODO: Replace with real data.
-        var data = await _sampleDataService.GetGridDataAsync();
-
-        foreach (var item in data)
+            foreach (var item in data)
+            {
+                Source.Add(item);
+            }
+        }
+        catch (Exception e)
         {
-            Source.Add(item);
+            await NotifyHelper.ShowNotifyDialog(NotifyHelper.ErrorTitle, e.Message);
         }
     }
 

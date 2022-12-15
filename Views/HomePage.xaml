@@ -10,16 +10,9 @@
         <StackPanel>
             <TextBlock Text="{x:Bind ViewModel.GreetingMessage, Mode=OneWay}" 
                        Style="{ThemeResource SubtitleTextBlockStyle}" />
-            <StackPanel Margin="{ThemeResource SmallTopBottomMargin}">
-                <TextBox x:Uid="Home_UserTextBox" Style="{StaticResource DefaultTextBoxStyle}"
-                     Margin="{ThemeResource XSmallTopMargin}"/>
-                <PasswordBox x:Uid="Home_PasswaordTextBox" Style="{StaticResource DefaultTextBoxStyle}"
-                     Margin="{ThemeResource XSmallTopMargin}"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="{ThemeResource SmallTopBottomMargin}">
-                <Button Style="{StaticResource AccentButtonStyle}" x:Uid="Home_LoginButton"/>
-            </StackPanel>
+            
+            
+            
             
         </StackPanel>
     </Grid>

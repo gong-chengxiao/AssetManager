@@ -8,33 +8,90 @@
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
-        <controls:DataGrid
+        <StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="{ThemeResource SmallTopMargin}"
+                    CornerRadius="4"
+                    Height="55">
+                <CommandBar DefaultLabelPosition="Right"
+                        VerticalAlignment="Center">
+                    <AppBarButton Width="80" Icon="Filter" x:Uid="AssetTable_Filter">
+                        <AppBarButton.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutSubItem Text="{x:Static  Srting .AssetTypeText}">
+                                    <MenuFlyoutItem Text="{x:Bind ViewModel.AssetType_Big}"/>
+                                    <MenuFlyoutItem Text="{x:Bind ViewModel.AssetType_Mid}"/>
+                                    <MenuFlyoutItem Text="{x:Bind ViewModel.AssetType_Small}"/>
+                                </MenuFlyoutSubItem>
+
+                                <MenuFlyoutSubItem x:Uid="AssetTable_DateFilter">
+                                    <MenuFlyoutItem x:Uid="AssetTable_LastOneMonth"/>
+                                    <MenuFlyoutItem x:Uid="AssetTable_LastThreeMonth"/>
+                                    <MenuFlyoutItem x:Uid="AssetTable_LastHalfYear"/>
+                                    <MenuFlyoutItem x:Uid="AssetTable_LastoneYear"/>
+                                </MenuFlyoutSubItem>
+
+                                <MenuFlyoutSubItem>
+                                    <MenuFlyoutItem Text=""/>
+                                    <MenuFlyoutItem/>
+                                    <MenuFlyoutItem/>
+                                    <MenuFlyoutItem/>
+                                </MenuFlyoutSubItem>
+                                
+                                <MenuFlyoutItem x:Uid="AssetTable_RemoveFilter"/>
+                            </MenuFlyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+
+                    <AppBarButton Label="Group" Width="80">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="&#xF168;" />
+                        </AppBarButton.Icon>
+                        <AppBarButton.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Range"/>
+                                <MenuFlyoutItem Text="Parent Mountain"/>
+                            </MenuFlyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                    
+                </CommandBar>
+                <AutoSuggestBox x:Name="SearchBox"
+                            QueryIcon="Find"
+                            Width="240"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="8 0 0 0" />
+                
+            </StackPanel>
+            <controls:DataGrid
+            Margin="{ThemeResource XSmallTopMargin}"
             AutoGenerateColumns="False"
             GridLinesVisibility="Horizontal"
             ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
-            <controls:DataGrid.Resources>
-                <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
-            </controls:DataGrid.Resources>
-            <controls:DataGrid.Columns>
-                <!-- TODO: Replace column definitions to match real data. Consider adding Header values to Resources.resw. -->
-                <controls:DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                <controls:DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                <controls:DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                <controls:DataGridTemplateColumn Header="Symbol">
-                    <controls:DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <FontIcon
-                                HorizontalAlignment="Left"
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                Glyph="{Binding Symbol}"
-                                AutomationProperties.Name="{Binding SymbolName}" />
-                        </DataTemplate>
-                    </controls:DataGridTemplateColumn.CellTemplate>
-                </controls:DataGridTemplateColumn>
-            </controls:DataGrid.Columns>
-        </controls:DataGrid>
+                <controls:DataGrid.Resources>
+                    <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
+                </controls:DataGrid.Resources>
+                <controls:DataGrid.Columns>
+
+                    <controls:DataGridTextColumn Binding="{Binding AssetID}" x:Uid="AssetTable_AssetID" />
+                    <controls:DataGridTextColumn Binding="{Binding AssetName}" x:Uid="AssetTable_AssetName" />
+                    <controls:DataGridTextColumn Binding="{Binding AssetSpecification}" x:Uid="AssetTable_AssetSpecification" />
+                    <controls:DataGridTextColumn Binding="{Binding AssetType}" x:Uid="AssetTable_AssetType" />
+                    <controls:DataGridTextColumn Binding="{Binding AssetSerialNumber}" x:Uid="AssetTable_AssetSerialNumber" />
+                    <controls:DataGridTextColumn Binding="{Binding AssetPurchaseDate}" x:Uid="AssetTable_AssetPurchaseDate" />
+                    <controls:DataGridTextColumn Binding="{Binding AssetPurchasePrice}" x:Uid="AssetTable_AssetPurchasePrice" />
+                    <controls:DataGridTextColumn Binding="{Binding AssetPurchaseOrderNumber}" x:Uid="AssetTable_AssetPurchaseOrderNumber" />
+                    <controls:DataGridTextColumn Binding="{Binding AssetVendorID}" x:Uid="AssetTable_AssetVendorID" />
+                    <controls:DataGridTextColumn Binding="{Binding GetterID}" x:Uid="AssetTable_GetterID" />
+                    <controls:DataGridTextColumn Binding="{Binding UserID}" x:Uid="AssetTable_UserID" />
+
+                </controls:DataGrid.Columns>
+
+            </controls:DataGrid>
+            <Button HorizontalAlignment="Right" Margin="{ThemeResource XSmallTopMargin}" 
+                    Style="{StaticResource AccentButtonStyle}" x:Uid="AssetTable_CommitButton"/>
+        </StackPanel>
     </Grid>
 </Page>
