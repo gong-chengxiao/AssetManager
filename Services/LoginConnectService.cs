@@ -1,5 +1,6 @@
 ﻿using AssetManager.Contracts.Services;
 using AssetManager.Core.Models;
+using AssetManager.Core.Helpers;
 using AssetManager.Helpers;
 using AssetManager.Views;
 using Microsoft.UI.Xaml;

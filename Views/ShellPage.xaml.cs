@@ -24,7 +24,6 @@ public sealed partial class ShellPage : Page
     {
         ViewModel = viewModel;
         InitializeComponent();
-        
 
         ViewModel.NavigationService.Frame = NavigationFrame;
         ViewModel.NavigationViewService.Initialize(NavigationViewControl);
@@ -41,6 +40,7 @@ public sealed partial class ShellPage : Page
     private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         TitleBarHelper.UpdateTitleBar(RequestedTheme);
+        NotifyHelper.XamlRoot = this.XamlRoot;
 
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
