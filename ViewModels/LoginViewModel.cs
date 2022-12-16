@@ -19,10 +19,17 @@ public class LoginViewModel : INotifyPropertyChanged
         get;
     }
 
+    public LoginForm LoginForm
+    {
+        get;
+        set;
+    }
     public bool IsUseOtherDb
     {
         get;
+        set;
     }
+
 
     private InfoBar _messageInfoBar;
     public InfoBar MessageInfoBar
@@ -50,20 +57,21 @@ public class LoginViewModel : INotifyPropertyChanged
 
     public LoginViewModel(ILoginConnectService loginConnectService)
     {
+        LoginForm = new();
         IsUseOtherDb = false;
         _loginConnectService = loginConnectService;
         ProgressRingActive = false;
 
-        LoginCommand = new RelayCommand<LoginForm>(
-            async (param) =>
+        LoginCommand = new RelayCommand(
+            async () =>
             {
                 ProgressRingActive = true;
-                if (param != null)
+                if (LoginForm != null)
                 {
                     try
                     {
                         await Task.Delay(1);
-                        await _loginConnectService.SetSqlConnectFromLogin(param);
+                        await _loginConnectService.SetSqlConnectFromLogin(LoginForm);
                     }
                     catch (Exception e)
                     {
