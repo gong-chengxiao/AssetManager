@@ -31,8 +31,8 @@ public class LoginViewModel : INotifyPropertyChanged
     }
 
 
-    private InfoBar _messageInfoBar;
-    public InfoBar MessageInfoBar
+    private InfoBar? _messageInfoBar;
+    public InfoBar? MessageInfoBar
     {
         get => _messageInfoBar;
         set
@@ -72,6 +72,7 @@ public class LoginViewModel : INotifyPropertyChanged
                     {
                         await Task.Delay(1);
                         await _loginConnectService.SetSqlConnectFromLogin(LoginForm);
+                        await _loginConnectService.NavigateToShellPageAsync();
                     }
                     catch (Exception e)
                     {
