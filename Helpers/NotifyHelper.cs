@@ -7,12 +7,13 @@ namespace AssetManager.Helpers
 {
     class NotifyHelper
     {
-        private static string _errorTitle = "Dialog_ErrorTittle".GetLocalized();
-        public static string ErrorTitle
-        {
-            get => _errorTitle;
-        }
+        private static readonly string _errorTitle = "Dialog_ErrorTittle".GetLocalized();
+        public static string ErrorTitle => _errorTitle;
 
+        public static XamlRoot? XamlRoot
+        {
+            get; set;
+        }
 
         public static async Task<ContentDialogResult> ShowNotifyDialog(string title, string content)
         {
@@ -23,8 +24,23 @@ namespace AssetManager.Helpers
                 PrimaryButtonText = "OK".GetLocalized(),
                 CloseButtonText = "Cancel".GetLocalized(),
                 DefaultButton = ContentDialogButton.Primary,
-                XamlRoot = ShellPage.MainRoot.XamlRoot
-                
+                XamlRoot = XamlRoot
+
+            };
+            return await dialog.ShowAsync();
+        }
+
+        public static async Task<ContentDialogResult> ShowError(string content)
+        {
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = _errorTitle,
+                Content = content,
+                PrimaryButtonText = "OK".GetLocalized(),
+                CloseButtonText = "Cancel".GetLocalized(),
+                DefaultButton = ContentDialogButton.Primary,
+                XamlRoot = XamlRoot
+
             };
             return await dialog.ShowAsync();
         }

@@ -213,7 +213,7 @@
   <data name="AssetTable_CommitButton.Content" xml:space="preserve">
     <value>提交更改</value>
   </data>
-  <data name="AssetTable_DateFilter" xml:space="preserve">
+  <data name="AssetTable_DateFilter.Text" xml:space="preserve">
     <value>购置日期</value>
   </data>
   <data name="AssetTable_Filter.Label" xml:space="preserve">
@@ -263,5 +263,53 @@
   </data>
   <data name="OK" xml:space="preserve">
     <value>确认</value>
+  </data>
+  <data name="Academic Affairs Office" xml:space="preserve">
+    <value>教务处</value>
+  </data>
+  <data name="AssetTable_DepartmentFilter.Text" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="Department of Publicity" xml:space="preserve">
+    <value>党委宣传部</value>
+  </data>
+  <data name="Engineering Training Center" xml:space="preserve">
+    <value>工训中心</value>
+  </data>
+  <data name="General Office of School" xml:space="preserve">
+    <value>学校办公室</value>
+  </data>
+  <data name="Library" xml:space="preserve">
+    <value>图书馆</value>
+  </data>
+  <data name="School of Aeronautics" xml:space="preserve">
+    <value>航空学院</value>
+  </data>
+  <data name="School of Computer" xml:space="preserve">
+    <value>计算机学院</value>
+  </data>
+  <data name="School of Electrical" xml:space="preserve">
+    <value>电子信息学院</value>
+  </data>
+  <data name="Database Name" xml:space="preserve">
+    <value>数据库名称</value>
+  </data>
+  <data name="Host" xml:space="preserve">
+    <value>主机地址</value>
+  </data>
+  <data name="Log in" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>端口号</value>
+  </data>
+  <data name="Use Other Database" xml:space="preserve">
+    <value>使用其他数据库</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>用户名</value>
   </data>
 </root>

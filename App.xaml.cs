@@ -62,6 +62,7 @@ public partial class App : Application
             services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<ILoginConnectService, LoginConnectService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
@@ -84,6 +85,8 @@ public partial class App : Application
             services.AddTransient<HomeViewModel>();
             services.AddTransient<HomePage>();
             services.AddTransient<ShellPage>();
+            services.AddTransient<LoginPage>();
+            services.AddTransient<LoginViewModel>();
             services.AddTransient<ShellViewModel>();
 
             // Configuration

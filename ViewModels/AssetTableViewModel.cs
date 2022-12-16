@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 using AssetManager.Contracts.ViewModels;
 using AssetManager.Core.Contracts.Services;
@@ -15,6 +16,10 @@ public class AssetTableViewModel : ObservableRecipient, INavigationAware
 {
     private readonly IAssetDataService _assetDataService;
     
+    public ICommand GroupCommand
+    {
+        get;
+    }
 
     public ObservableCollection<SchoolAsset> Source { get; } = new ObservableCollection<SchoolAsset>();
 

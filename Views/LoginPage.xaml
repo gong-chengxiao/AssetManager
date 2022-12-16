@@ -1,0 +1,61 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="AssetManager.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AssetManager.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:st="using:AssetManager.Helpers"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <st:BooleanToVisibility x:Key="BooleanToVisibility" />
+    </Page.Resources>
+    <Grid>
+        <Grid x:Name="AppTitleBar"
+              Canvas.ZIndex="1"
+              Margin="8,0"
+              Height="28"
+              IsHitTestVisible="True"
+              VerticalAlignment="Top">
+            <Image Source="/Assets/WindowIcon.ico"
+                   HorizontalAlignment="Left"
+                   Width="16"
+                   Height="16" />
+            <TextBlock x:Name="AppTitleBarText"
+                       VerticalAlignment="Center"
+                       TextWrapping="NoWrap"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Margin="28,0,0,0"/>
+        </Grid>
+        <ScrollViewer>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{x:Bind st:Strings.AppDisplayName}" Margin="0,0,0,25" />
+                <TextBox x:Name="UsernameTextBox" Header="{x:Bind st:Strings.UserNameText}" Margin="0,8,0,0" Width="350"/>
+                <PasswordBox x:Name="PasswordTextBox" Header="{x:Bind st:Strings.PasswordText}" Margin="0,8,0,0" Width="350"/>
+                <Button Content="{x:Bind st:Strings.LoginText}" Margin="0,20,0,0" Command="{x:Bind ViewModel.LoginCommand}"
+                    Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center">
+                    <Button.CommandParameter>
+                        <st:LoginForm Host="{x:Bind HostTextBox.Text}" Port="{x:Bind PortTextBox.Text}" DbName="{x:Bind DbNameTextBox.Text}" 
+                                  Username="{x:Bind UsernameTextBox.Text}" Password="{x:Bind PasswordTextBox.Password}" IsUseOtherDb="{x:Bind OtherDbToggle.IsOn}"/>
+                    </Button.CommandParameter>
+                </Button>
+
+                <ToggleSwitch Header="{x:Bind st:Strings.UseOtherDbText}" Margin="0,25,0,0" 
+                          x:Name="OtherDbToggle" IsOn="{x:Bind ViewModel.IsUseOtherDb}"/>
+                <StackPanel Visibility="{x:Bind OtherDbToggle.IsOn, Converter={StaticResource BooleanToVisibility},Mode=OneWay}">
+                    <TextBox x:Name="HostTextBox" Header="{x:Bind st:Strings.HostAddressText}" Margin="0,8,0,0" Width="350"/>
+                    <TextBox x:Name="PortTextBox" Header="{x:Bind st:Strings.PortText}" Margin="0,8,0,0" Width="100" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="DbNameTextBox" Header="{x:Bind st:Strings.DbNameText}" Margin="0,8,0,0" Width="350"/>
+                </StackPanel>
+                <ContentControl Content="{x:Bind ViewModel.MessageInfoBar, Mode=OneWay}" Width="300" Margin="0,10,0,0"/>
+                <ProgressRing IsActive="{x:Bind ViewModel.ProgressRingActive, Mode=OneWay}" Margin="0,20,0,0" />
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

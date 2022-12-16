@@ -19,16 +19,12 @@ public sealed partial class ShellPage : Page
         get;
     }
 
-    public static FrameworkElement MainRoot
-    {
-        get; private set;
-    }
 
     public ShellPage(ShellViewModel viewModel)
     {
         ViewModel = viewModel;
         InitializeComponent();
-        MainRoot = this.Content as FrameworkElement;
+        
 
         ViewModel.NavigationService.Frame = NavigationFrame;
         ViewModel.NavigationViewService.Initialize(NavigationViewControl);

@@ -1,5 +1,6 @@
 ﻿using AssetManager.Activation;
 using AssetManager.Contracts.Services;
+using AssetManager.Helpers;
 using AssetManager.Views;
 
 using Microsoft.UI.Xaml;
@@ -13,6 +14,7 @@ public class ActivationService : IActivationService
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
     private readonly IThemeSelectorService _themeSelectorService;
     private UIElement? _shell = null;
+    private UIElement? _login = null;
 
     public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, IThemeSelectorService themeSelectorService)
     {
@@ -29,8 +31,10 @@ public class ActivationService : IActivationService
         // Set the MainWindow Content.
         if (App.MainWindow.Content == null)
         {
-            _shell = App.GetService<ShellPage>();
-            App.MainWindow.Content = _shell ?? new Frame();
+            _login = App.GetService<LoginPage>();
+            App.MainWindow.Content = _login ?? new Frame();
+            //_shell = App.GetService<ShellPage>();
+            //App.MainWindow.Content = _shell ?? new Frame();
         }
 
         // Handle activation via ActivationHandlers.

@@ -1,9 +1,11 @@
 ﻿using AssetManager.Helpers;
+using Microsoft.UI.Xaml;
 
 namespace AssetManager;
 
 public sealed partial class MainWindow : WindowEx
 {
+
     public MainWindow()
     {
         InitializeComponent();
