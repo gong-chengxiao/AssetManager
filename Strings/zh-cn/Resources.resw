@@ -207,8 +207,8 @@
   <data name="AssetTable_AssetType.Header" xml:space="preserve">
     <value>种类</value>
   </data>
-  <data name="AssetTable_AssetVendorID.Header" xml:space="preserve">
-    <value>供应商编号</value>
+  <data name="AssetTable_AssetVendorName.Header" xml:space="preserve">
+    <value>供应商</value>
   </data>
   <data name="AssetTable_CommitButton.Content" xml:space="preserve">
     <value>提交更改</value>
@@ -219,8 +219,8 @@
   <data name="AssetTable_Filter.Label" xml:space="preserve">
     <value>过滤</value>
   </data>
-  <data name="AssetTable_GetterID.Header" xml:space="preserve">
-    <value>领取人ID</value>
+  <data name="AssetTable_GetterName.Header" xml:space="preserve">
+    <value>领取人</value>
   </data>
   <data name="AssetTable_LastHalfYear.Text" xml:space="preserve">
     <value>最近半年</value>
@@ -237,8 +237,8 @@
   <data name="AssetTable_RemoveFilter.Text" xml:space="preserve">
     <value>取消过滤</value>
   </data>
-  <data name="AssetTable_UserID.Header" xml:space="preserve">
-    <value>使用人ID</value>
+  <data name="AssetTable_UserName.Header" xml:space="preserve">
+    <value>使用人</value>
   </data>
   <data name="AssetTypeText" xml:space="preserve">
     <value>规格</value>
@@ -311,5 +311,11 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>用户名</value>
+  </data>
+  <data name="AssetTable_DepartmentName.Header" xml:space="preserve">
+    <value>所属单位</value>
+  </data>
+  <data name="AssetTable_Group.Label" xml:space="preserve">
+    <value>分组</value>
   </data>
 </root>
