@@ -7,162 +7,185 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:st="using:AssetManager.Helpers"
     mc:Ignorable="d">
+    <ScrollViewer>
+        <Grid x:Name="ContentArea">
 
-    <Grid x:Name="ContentArea">
-        <ScrollViewer>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal"
+            <StackPanel>
+                <ProgressBar IsIndeterminate="True" ShowPaused="False" ShowError="False"
+                             Visibility="{x:Bind ViewModel.ProgressBarVisibility,Mode=TwoWay}" Height="8"/>
+                <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Margin="{ThemeResource SmallTopMargin}"
                     CornerRadius="4"
                     Height="55">
-                <ProgressBar IsIndeterminate="True" ShowPaused="False" ShowError="False"
-                             Visibility="{x:Bind ViewModel.ProgressBarVisibility}"/>
-                <CommandBar DefaultLabelPosition="Right"
+
+                    <CommandBar DefaultLabelPosition="Right"
                         VerticalAlignment="Center">
-                    <AppBarButton Width="80" Icon="Filter" x:Uid="AssetTable_Filter">
-                        <AppBarButton.Flyout>
-                            <MenuFlyout>
-                                <MenuFlyoutSubItem Text="{x:Bind st:Strings.AssetTypeText}">
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" 
+                        <AppBarButton Width="100" Icon="Upload" Command="{x:Bind ViewModel.SubmittCommand}"
+                                      x:Uid="AssetTable_CommitButton"
+                                      HorizontalAlignment="Left"/>
+                        <AppBarButton Width="80" Icon="Filter" x:Uid="AssetTable_Filter">
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutSubItem Text="{x:Bind st:Strings.AssetTypeText}">
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" 
                                                     Text="{x:Bind st:Strings.AssetType_Big}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="aspec" Value="大"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}"
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="aspec" Value="大"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}"
                                                     Text="{x:Bind st:Strings.AssetType_Mid}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="aspec" Value="中"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}"
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="aspec" Value="中"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}"
                                                     Text="{x:Bind st:Strings.AssetType_Small}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="aspec" Value="小"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
-                                </MenuFlyoutSubItem>
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="aspec" Value="小"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyoutSubItem>
 
-                                <MenuFlyoutSubItem x:Uid="AssetTable_DateFilter">
-                                    <MenuFlyoutItem x:Uid="AssetTable_LastOneMonth"/>
-                                    <MenuFlyoutItem x:Uid="AssetTable_LastThreeMonth"/>
-                                    <MenuFlyoutItem x:Uid="AssetTable_LastHalfYear"/>
-                                    <MenuFlyoutItem x:Uid="AssetTable_LastoneYear"/>
-                                </MenuFlyoutSubItem>
+                                    <MenuFlyoutSubItem x:Uid="AssetTable_DateFilter">
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastOneMonth" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>1</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastThreeMonth" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>3</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastHalfYear" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>6</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastoneYear" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>12</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyoutSubItem>
 
-                                <MenuFlyoutSubItem x:Uid="AssetTable_DepartmentFilter">
-                                    <MenuFlyoutItem Text="{x:Bind st:Strings.GeneralOfficeOfSchoolName}"
+                                    <MenuFlyoutSubItem x:Uid="AssetTable_DepartmentFilter">
+                                        <MenuFlyoutItem Text="{x:Bind st:Strings.GeneralOfficeOfSchoolName}"
                                                     Command="{x:Bind ViewModel.FileterCommand}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="depart" Value="学校办公室"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="depart" Value="学校办公室"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
 
-                                    <MenuFlyoutItem Text="{x:Bind st:Strings.DepartmentOfPublicityName}"
+                                        <MenuFlyoutItem Text="{x:Bind st:Strings.DepartmentOfPublicityName}"
                                                     Command="{x:Bind ViewModel.FileterCommand}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="depart" Value="党委宣传部"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="depart" Value="党委宣传部"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
 
-                                    <MenuFlyoutItem Text="{x:Bind st:Strings.AcademicAffairsOfficeName}"
+                                        <MenuFlyoutItem Text="{x:Bind st:Strings.AcademicAffairsOfficeName}"
                                                     Command="{x:Bind ViewModel.FileterCommand}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="depart" Value="教务处"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="depart" Value="教务处"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
 
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.SchoolOfAeronauticsName}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="depart" Value="航空学院"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.SchoolOfAeronauticsName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="depart" Value="航空学院"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
 
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.SchoolOfElectricalName}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="depart" Value="电子信息学院"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.SchoolOfElectricalName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="depart" Value="电子信息学院"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
 
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.SchoolOfComputerName}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="depart" Value="计算机学院"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.SchoolOfComputerName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="depart" Value="计算机学院"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
 
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.EngineeringTrainingCenterName}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="depart" Value="工训中心"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.EngineeringTrainingCenterName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="depart" Value="工训中心"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
 
-                                    <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.LibraryName}">
-                                        <MenuFlyoutItem.CommandParameter>
-                                            <st:KeyValueStringPair Key="depart" Value="图书馆"/>
-                                        </MenuFlyoutItem.CommandParameter>
-                                    </MenuFlyoutItem>
-                                </MenuFlyoutSubItem>
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.LibraryName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="depart" Value="图书馆"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyoutSubItem>
 
-                                <MenuFlyoutItem x:Uid="AssetTable_RemoveFilter"
+                                    <MenuFlyoutItem x:Uid="AssetTable_RemoveFilter"
                                                 Command="{x:Bind ViewModel.RefreshCommand}"/>
-                            </MenuFlyout>
-                        </AppBarButton.Flyout>
-                    </AppBarButton>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
 
-                    <AppBarButton x:Uid="AssetTable_Group" Width="80">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="&#xF168;" />
-                        </AppBarButton.Icon>
-                        <AppBarButton.Flyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem Text="Range"/>
-                                <MenuFlyoutItem Text="Parent Mountain"/>
-                            </MenuFlyout>
-                        </AppBarButton.Flyout>
-                    </AppBarButton>
+                        <AppBarButton x:Uid="AssetTable_Group" Width="80">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="&#xF168;" />
+                            </AppBarButton.Icon>
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Range"/>
+                                    <MenuFlyoutItem Text="Parent Mountain"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
 
-                    <AppBarButton Width="80" Command="{x:Bind ViewModel.RefreshCommand}"
+                        <AppBarButton Width="50" Command="{x:Bind ViewModel.RefreshCommand}"
                                   Icon="Refresh"/>
 
-                </CommandBar>
-                <AutoSuggestBox x:Name="SearchBox"
+                        <AppBarButton Width="50" Icon="Add" Command="{x:Bind ViewModel.AddCommand}"/>
+
+                    </CommandBar>
+                    <AutoSuggestBox x:Name="SearchBox"
                             QueryIcon="Find"
                             Width="240"
                             HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Margin="8 0 0 0" />
+                            VerticalAlignment="Center" QuerySubmitted="SearchBox_QuerySubmitted"
+                            Margin="8 0 0 0"/>
 
-            </StackPanel>
-            <controls:DataGrid Margin="{ThemeResource XSmallTopMargin}"
+                </StackPanel>
+                
+                <controls:DataGrid Margin="0,8,15,8"
                                    AutoGenerateColumns="False"
                                    GridLinesVisibility="Horizontal"
+                                   RowEditEnded="DataGrid_RowEditEnded"
+                                   RightTapped="DataGrid_RightTapped"
+                                   SelectedItem="{x:Bind ViewModel.SelectedRow, Mode=TwoWay}"
                                    ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
-                <controls:DataGrid.Resources>
-                    <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
-                </controls:DataGrid.Resources>
-                <controls:DataGrid.Columns>
+                    <controls:DataGrid.Resources>
+                        <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
+                    </controls:DataGrid.Resources>
+                    <controls:DataGrid.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Uid="AssetTable_DeleteFlyoutItem"
+                                            Command="{x:Bind ViewModel.DeleteRowCommand}"/>
+                        </MenuFlyout>
+                    </controls:DataGrid.ContextFlyout>
+                    <controls:DataGrid.Columns>
 
-                    <controls:DataGridTextColumn Binding="{Binding AssetID}" x:Uid="AssetTable_AssetID" />
-                    <controls:DataGridTextColumn Binding="{Binding AssetName}" x:Uid="AssetTable_AssetName" />
-                    <controls:DataGridTextColumn Binding="{Binding AssetSpecification}" x:Uid="AssetTable_AssetSpecification" />
-                    <controls:DataGridTextColumn Binding="{Binding AssetType}" x:Uid="AssetTable_AssetType" />
-                    <controls:DataGridTextColumn Binding="{Binding AssetSerialNumber}" x:Uid="AssetTable_AssetSerialNumber" />
-                    <controls:DataGridTextColumn Binding="{Binding AssetPurchaseDate}" x:Uid="AssetTable_AssetPurchaseDate" />
-                    <controls:DataGridTextColumn Binding="{Binding AssetPurchasePrice}" x:Uid="AssetTable_AssetPurchasePrice" />
-                    <controls:DataGridTextColumn Binding="{Binding AssetPurchaseOrderNumber}" x:Uid="AssetTable_AssetPurchaseOrderNumber" />
-                    <controls:DataGridTextColumn Binding="{Binding AssetVendorName}" x:Uid="AssetTable_AssetVendorName" />
-                    <controls:DataGridTextColumn Binding="{Binding GetterName}" x:Uid="AssetTable_GetterName" />
-                    <controls:DataGridTextColumn Binding="{Binding UserName}" x:Uid="AssetTable_UserName" />
-                    <controls:DataGridTextColumn Binding="{Binding DepartmentName}" x:Uid="AssetTable_DepartmentName" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetID}" x:Uid="AssetTable_AssetID" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetName}" x:Uid="AssetTable_AssetName" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetSpecification}" x:Uid="AssetTable_AssetSpecification" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetType}" x:Uid="AssetTable_AssetType" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetSerialNumber}" x:Uid="AssetTable_AssetSerialNumber" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetPurchaseDate}" x:Uid="AssetTable_AssetPurchaseDate" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetPurchasePrice}" x:Uid="AssetTable_AssetPurchasePrice" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetPurchaseOrderNumber}" x:Uid="AssetTable_AssetPurchaseOrderNumber" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetVendorName}" x:Uid="AssetTable_AssetVendorName" />
+                        <controls:DataGridTextColumn Binding="{Binding GetterName}" x:Uid="AssetTable_GetterName" />
+                        <controls:DataGridTextColumn Binding="{Binding UserName}" x:Uid="AssetTable_UserName" />
+                        <controls:DataGridTextColumn Binding="{Binding DepartmentName}" x:Uid="AssetTable_DepartmentName" />
 
+                    </controls:DataGrid.Columns>
 
-                </controls:DataGrid.Columns>
+                </controls:DataGrid>
 
-            </controls:DataGrid>
-            <Button HorizontalAlignment="Right" Margin="0,15,0,0" 
-                    Style="{StaticResource AccentButtonStyle}" x:Uid="AssetTable_CommitButton"/>
+            </StackPanel>
 
-        </StackPanel></ScrollViewer>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>

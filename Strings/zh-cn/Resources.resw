@@ -210,7 +210,7 @@
   <data name="AssetTable_AssetVendorName.Header" xml:space="preserve">
     <value>供应商</value>
   </data>
-  <data name="AssetTable_CommitButton.Content" xml:space="preserve">
+  <data name="AssetTable_CommitButton.Label" xml:space="preserve">
     <value>提交更改</value>
   </data>
   <data name="AssetTable_DateFilter.Text" xml:space="preserve">
@@ -317,5 +317,8 @@
   </data>
   <data name="AssetTable_Group.Label" xml:space="preserve">
     <value>分组</value>
+  </data>
+  <data name="AssetTable_DeleteFlyoutItem.Text" xml:space="preserve">
+    <value>删除行</value>
   </data>
 </root>
