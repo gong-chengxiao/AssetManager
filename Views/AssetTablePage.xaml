@@ -122,18 +122,6 @@
                             </AppBarButton.Flyout>
                         </AppBarButton>
 
-                        <AppBarButton x:Uid="AssetTable_Group" Width="80">
-                            <AppBarButton.Icon>
-                                <FontIcon Glyph="&#xF168;" />
-                            </AppBarButton.Icon>
-                            <AppBarButton.Flyout>
-                                <MenuFlyout>
-                                    <MenuFlyoutItem Text="Range"/>
-                                    <MenuFlyoutItem Text="Parent Mountain"/>
-                                </MenuFlyout>
-                            </AppBarButton.Flyout>
-                        </AppBarButton>
-
                         <AppBarButton Width="50" Command="{x:Bind ViewModel.RefreshCommand}"
                                   Icon="Refresh"/>
 
