@@ -19,6 +19,9 @@ namespace AssetManager.ViewModels;
 public class AssetTableViewModel : ObservableRecipient, INavigationAware, INotifyPropertyChanged
 {
     private readonly IAssetDataService _assetDataService;
+    
+    // 新增item的数量，每次提交更改后重置
+    public int NewItemNumber { get; set; } = 0;
 
     private Visibility _progressBarVisibility;
     public Visibility ProgressBarVisibility
@@ -138,6 +141,10 @@ public class AssetTableViewModel : ObservableRecipient, INavigationAware, INotif
                 try
                 {
                     await _assetDataService.ActivateUpdateList();
+                    for(var i = 0; i < NewItemNumber; i++)
+                    {
+                        await _assetDataService.ActivateAdd(Source[i]);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -174,32 +181,36 @@ public class AssetTableViewModel : ObservableRecipient, INavigationAware, INotif
         AddCommand = new RelayCommand(
             () =>
             {
-                Source.Insert(0, new());
+                NewItemNumber++;
+                Source.Insert(0, new SchoolAsset{
+                    AssetID = Source.Last().AssetID + 1 
+                });
             });
     }
     public async Task SearchBoxQuery(string param)
     {
-
-        ProgressBarVisibility = Visibility.Visible;
-        try
+        if (param != "")
         {
-            await Task.Delay(1);
-            var data = await _assetDataService.GetSearchGridDataAsync(param);
-            Source.Clear();
-            foreach (var asset in data)
+            ProgressBarVisibility = Visibility.Visible;
+            try
             {
-                Source.Add(asset);
+                await Task.Delay(1);
+                var data = await _assetDataService.GetSearchGridDataAsync(param);
+                Source.Clear();
+                foreach (var asset in data)
+                {
+                    Source.Add(asset);
+                }
+            }
+            catch (Exception e)
+            {
+                await NotifyHelper.ShowNotifyDialog(NotifyHelper.ErrorTitle, e.Message);
+            }
+            finally
+            {
+                ProgressBarVisibility = Visibility.Collapsed;
             }
         }
-        catch (Exception e)
-        {
-            await NotifyHelper.ShowNotifyDialog(NotifyHelper.ErrorTitle, e.Message);
-        }
-        finally
-        {
-            ProgressBarVisibility = Visibility.Collapsed;
-        }
-
     }
     public void AddToUpdateList(string key, SchoolAsset value)
     {

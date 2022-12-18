@@ -29,8 +29,11 @@ public sealed partial class AssetTablePage : Page
 
     private void DataGrid_RowEditEnded(object sender, CommunityToolkit.WinUI.UI.Controls.DataGridRowEditEndedEventArgs e)
     {
-        SchoolAsset row = (SchoolAsset)e.Row.DataContext;
-        ViewModel.AddToUpdateList(row.AssetID.ToString(), row);
+        if (e.Row.GetIndex() >= ViewModel.NewItemNumber)
+        {
+            SchoolAsset row = (SchoolAsset)e.Row.DataContext;
+            ViewModel.AddToUpdateList(row.AssetID.ToString(), row);
+        }
     }
 
     private void DataGrid_RightTapped(object sender, Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs e)
