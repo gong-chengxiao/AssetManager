@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿*AssetManager 学校固定资产管理系统*
+﻿﻿﻿﻿﻿﻿﻿*AssetManager 学校固定资产管理系统*
 
 数据库原理实验课程大作业，2022秋季学期
 
@@ -13,8 +13,7 @@ NWPU，2022年12月
 * 设计：使用WinUI 3风格界面，操作简单流畅。
 * 开发：使用MVVM框架。
 * 本地化：支持多语言。
-
-系统要求：Windows 10 1809 (build 17763)及以上或Windows 11，x86、x64或arm64架构。需要安装[.NET Desktop Runtime 6.0.11](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) 以上以及[Windows App SDK](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads)，注意在安装时选择对应的架构。
+* 系统要求：Windows 10 1809 (build 17763)及以上或Windows 11，x86、x64或arm64架构。需要安装[.NET Desktop Runtime 6.0.11](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) 以上以及[Windows App SDK](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads)，注意在安装时选择对应的架构。
 
 ## 界面
 
@@ -28,8 +27,21 @@ NWPU，2022年12月
 
 ## 进度
 
-* 登陆界面。done
-* 
+- [x] 登陆界面
+- [ ] 固定资产界面：
+  - [x] 连接数据库、显示数据
+  - [x] 修改数据
+  - [x] 删除数据
+  - [ ] 添加数据
+  - [x] 过滤
+  - [x] 分组
+  - [x] 搜索
+- [ ] 人员记录
+- [ ] 购置记录
+- [ ] 维修记录
+- [ ] 报废记录
+- [ ] 数据库设置
+- [ ] 主页显示信息
 
 ## 已知问题
 
