@@ -34,11 +34,14 @@
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{x:Bind st:Strings.AppDisplayName}" Margin="0,0,0,25" />
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,25">
+                    <Run Foreground="#6bae34" Text="Asset"/>
+                    <Run Text="Manager"/>
+                </TextBlock>
                 <TextBox Text="{x:Bind ViewModel.LoginForm.Username, Mode=TwoWay}" Header="{x:Bind st:Strings.UserNameText}" Margin="0,8,0,0" Width="350"/>
                 <PasswordBox Password="{x:Bind ViewModel.LoginForm.Password, Mode=TwoWay}" Header="{x:Bind st:Strings.PasswordText}" Margin="0,8,0,0" Width="350"/>
                 <Button Content="{x:Bind st:Strings.LoginText}" Margin="0,20,0,0" Command="{x:Bind ViewModel.LoginCommand}"
-                    Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center"/>
+                    Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center" Width="80"/>
 
                 <ToggleSwitch Header="{x:Bind st:Strings.UseOtherDbText}" Margin="0,25,0,0" 
                           x:Name="OtherDbToggle" IsOn="{x:Bind ViewModel.IsUseOtherDb}"/>
