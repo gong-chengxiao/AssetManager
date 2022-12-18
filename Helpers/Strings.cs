@@ -29,6 +29,16 @@ public static class Strings
     private static readonly string _portText = "Port".GetLocalized();
     private static readonly string _dbNameText = "Database Name".GetLocalized();
 
+    // 用户表
+    private static readonly string _userIdText = "ID".GetLocalized();
+    private static readonly string _nameText = "PersonName".GetLocalized();
+    private static readonly string _DepartmentText = "Department".GetLocalized();
+    private static readonly string _PhonenumberText = "Phonenumber".GetLocalized();
+    public static string UserIdText => _userIdText;
+    public static string NameText => _nameText;
+    public static string DepartmentText => _DepartmentText;
+    public static string PhonenumberText => _PhonenumberText;
+
 
     public static string AppDisplayName => _appDisplayName;
 

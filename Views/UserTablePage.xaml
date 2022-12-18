@@ -5,36 +5,133 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:st="using:AssetManager.Helpers"
     mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
-        <controls:DataGrid
-            AutoGenerateColumns="False"
-            GridLinesVisibility="Horizontal"
-            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
-            <controls:DataGrid.Resources>
-                <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
-            </controls:DataGrid.Resources>
-            <controls:DataGrid.Columns>
-                <!-- TODO: Replace column definitions to match real data. Consider adding Header values to Resources.resw. -->
-                <controls:DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                <controls:DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                <controls:DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                <controls:DataGridTemplateColumn Header="Symbol">
-                    <controls:DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <FontIcon
-                                HorizontalAlignment="Left"
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                Glyph="{Binding Symbol}"
-                                AutomationProperties.Name="{Binding SymbolName}" />
-                        </DataTemplate>
-                    </controls:DataGridTemplateColumn.CellTemplate>
-                </controls:DataGridTemplateColumn>
-            </controls:DataGrid.Columns>
-        </controls:DataGrid>
-    </Grid>
+    <ScrollViewer>
+        <Grid x:Name="ContentArea">
+
+            <StackPanel>
+                <ProgressBar IsIndeterminate="True" ShowPaused="False" ShowError="False"
+                             Visibility="{x:Bind ViewModel.ProgressBarVisibility,Mode=TwoWay}" Height="8"/>
+                <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="{ThemeResource SmallTopMargin}"
+                    CornerRadius="4"
+                    Height="55">
+
+                    <CommandBar DefaultLabelPosition="Right"
+                        VerticalAlignment="Center">
+                        <AppBarButton Width="100" Icon="Upload" Command="{x:Bind ViewModel.SubmittCommand}"
+                                      x:Uid="AssetTable_CommitButton"
+                                      HorizontalAlignment="Left"/>
+                        <AppBarButton Width="80" Icon="Filter" x:Uid="AssetTable_Filter">
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+
+                                    <MenuFlyoutSubItem x:Uid="AssetTable_DepartmentFilter">
+                                        <MenuFlyoutItem Text="{x:Bind st:Strings.GeneralOfficeOfSchoolName}"
+                                                    Command="{x:Bind ViewModel.FileterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="udepart" Value="学校办公室"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+
+                                        <MenuFlyoutItem Text="{x:Bind st:Strings.DepartmentOfPublicityName}"
+                                                    Command="{x:Bind ViewModel.FileterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="udepart" Value="党委宣传部"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+
+                                        <MenuFlyoutItem Text="{x:Bind st:Strings.AcademicAffairsOfficeName}"
+                                                    Command="{x:Bind ViewModel.FileterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="udepart" Value="教务处"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.SchoolOfAeronauticsName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="udepart" Value="航空学院"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.SchoolOfElectricalName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="udepart" Value="电子信息学院"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.SchoolOfComputerName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="udepart" Value="计算机学院"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.EngineeringTrainingCenterName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="udepart" Value="工训中心"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+
+                                        <MenuFlyoutItem Command="{x:Bind ViewModel.FileterCommand}" Text="{x:Bind st:Strings.LibraryName}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="udepart" Value="图书馆"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyoutSubItem>
+
+                                    <MenuFlyoutItem x:Uid="AssetTable_RemoveFilter"
+                                                Command="{x:Bind ViewModel.RefreshCommand}"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+
+                        <AppBarButton Width="50" Command="{x:Bind ViewModel.RefreshCommand}"
+                                  Icon="Refresh"/>
+
+                        <AppBarButton Width="50" Icon="Add" Command="{x:Bind ViewModel.AddCommand}"/>
+
+                    </CommandBar>
+                    <AutoSuggestBox x:Name="SearchBox"
+                            QueryIcon="Find"
+                            Width="240"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center" QuerySubmitted="SearchBox_QuerySubmitted"
+                            Margin="8 0 0 0"/>
+
+                </StackPanel>
+
+                <controls:DataGrid Margin="0,8,15,8"
+                                   AutoGenerateColumns="False"
+                                   GridLinesVisibility="Horizontal"
+                                   RowEditEnded="DataGrid_RowEditEnded"
+                                   RightTapped="DataGrid_RightTapped"
+                                   SelectedItem="{x:Bind ViewModel.SelectedRow, Mode=TwoWay}"
+                                   ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
+                    <controls:DataGrid.Resources>
+                        <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
+                    </controls:DataGrid.Resources>
+                    <controls:DataGrid.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Uid="AssetTable_DeleteFlyoutItem"
+                                            Command="{x:Bind ViewModel.DeleteRowCommand}"/>
+                        </MenuFlyout>
+                    </controls:DataGrid.ContextFlyout>
+                    <controls:DataGrid.Columns>
+
+                        <controls:DataGridTextColumn Binding="{Binding UserID}" Header="{x:Bind st:Strings.UserIdText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding UserName}" Header="{x:Bind st:Strings.NameText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding UserDepartment}" Header="{x:Bind st:Strings.DepartmentText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding UserPhonenumber}" Header="{x:Bind st:Strings.PhonenumberText}"/>
+
+                    </controls:DataGrid.Columns>
+
+                </controls:DataGrid>
+
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
 </Page>

@@ -315,10 +315,19 @@
   <data name="AssetTable_DepartmentName.Header" xml:space="preserve">
     <value>所属单位</value>
   </data>
-  <data name="AssetTable_Group.Label" xml:space="preserve">
-    <value>分组</value>
-  </data>
   <data name="AssetTable_DeleteFlyoutItem.Text" xml:space="preserve">
     <value>删除行</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="PersonName" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="Phonenumber" xml:space="preserve">
+    <value>电话号码</value>
   </data>
 </root>
