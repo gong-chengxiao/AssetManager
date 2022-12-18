@@ -1,4 +1,4 @@
-﻿﻿﻿﻿*AssetManager 学校固定资产管理系统*
+﻿﻿﻿﻿﻿*AssetManager 学校固定资产管理系统*
 
 数据库原理实验课程大作业，2022秋季学期
 
@@ -20,11 +20,11 @@ NWPU，2022年12月
 
 登陆界面
 
-![登陆界面](.\img\login_page.png)
+![登陆界面](/img/login_page.png)
 
 所有固定资产
 
-![asset table page](.\img\asset table page.png)
+![asset table page](/img/asset table page.png)
 
 ## 进度
 
