@@ -63,11 +63,11 @@ public partial class App : Application
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<ILoginConnectService, LoginConnectService>();
+            services.AddSingleton<IAssetDataService, AssetDataService>();
+            services.AddSingleton<IUserDataService, UserDataService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
-            services.AddSingleton<IAssetDataService, AssetDataService>();
-            services.AddSingleton<IUserDataService, UserDataService>();
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
