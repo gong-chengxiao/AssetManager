@@ -1,6 +1,6 @@
-﻿using AssetManager.Core.Models;
+﻿using AssetManager.Models;
 
-namespace AssetManager.Core.Contracts.Services;
+namespace AssetManager.Contracts.Services;
 public interface IUserDataService
 {
     Task<IEnumerable<UserInfo>> GetGridDataAsync();

@@ -2,7 +2,7 @@
 using AssetManager.Helpers;
 
 using Microsoft.UI.Xaml.Controls;
-using AssetManager.Core.Models;
+using AssetManager.Models;
 using Microsoft.UI.Xaml;
 
 namespace AssetManager.Views;

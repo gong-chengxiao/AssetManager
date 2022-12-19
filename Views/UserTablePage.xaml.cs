@@ -1,4 +1,4 @@
-﻿using AssetManager.Core.Models;
+﻿using AssetManager.Models;
 using AssetManager.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;

@@ -5,8 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 using AssetManager.Contracts.ViewModels;
-using AssetManager.Core.Contracts.Services;
-using AssetManager.Core.Models;
+using AssetManager.Contracts.Services;
+using AssetManager.Models;
 using AssetManager.Helpers;
 using AssetManager.Views;
 using CommunityToolkit.Mvvm.ComponentModel;

@@ -1,9 +1,10 @@
-﻿using AssetManager.Core.Contracts.Services;
+﻿using AssetManager.Contracts.Services;
 using AssetManager.Core.Helpers;
 using AssetManager.Core.Models;
+using AssetManager.Models;
 using MySqlConnector;
 
-namespace AssetManager.Core.Services;
+namespace AssetManager.Services;
 public class UserDataService : IUserDataService
 {
     private readonly string _view = AppSettings.UserView;
