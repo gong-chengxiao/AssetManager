@@ -10,6 +10,7 @@ public class UserDataService : IUserDataService
     private readonly string _view = AppSettings.UserView;
     private readonly string _baseTable = AppSettings.UserTable;
     private readonly int _rowLimit = AppSettings.RowLimit;
+    
     private List<UserInfo> _userInfo;
     private List<KeyValuePair<string, UserInfo>> _updateList = new();
     public void AddToUpdateList(string key, UserInfo asset)
@@ -117,7 +118,7 @@ public class UserDataService : IUserDataService
         try
         {
             var connection = await SqlConnector.RefreshConnectionAsync();
-            var queryString = $"select * from {_view} where {column} like '%{value}%' limit {_rowLimit}";
+            var queryString = $"select * from {_view} where {column} = '{value}' limit {_rowLimit}";
             using (var command = new MySqlCommand(queryString, connection))
             {
                 var reader = await command.ExecuteReaderAsync();

@@ -58,7 +58,7 @@
                                         <MenuFlyoutItem x:Uid="AssetTable_LastHalfYear" Command="{x:Bind ViewModel.TimeFilterCommand}">
                                             <MenuFlyoutItem.CommandParameter>6</MenuFlyoutItem.CommandParameter>
                                         </MenuFlyoutItem>
-                                        <MenuFlyoutItem x:Uid="AssetTable_LastoneYear" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastOneYear" Command="{x:Bind ViewModel.TimeFilterCommand}">
                                             <MenuFlyoutItem.CommandParameter>12</MenuFlyoutItem.CommandParameter>
                                         </MenuFlyoutItem>
                                     </MenuFlyoutSubItem>
