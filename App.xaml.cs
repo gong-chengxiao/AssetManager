@@ -66,6 +66,7 @@ public partial class App : Application
             services.AddSingleton<IAssetDataService, AssetDataService>();
             services.AddSingleton<IUserDataService, UserDataService>();
             services.AddSingleton<IMaintenanceDataService, MaintenanceDataService>();
+            services.AddSingleton<IScrappingDataService, ScrappingDataService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();

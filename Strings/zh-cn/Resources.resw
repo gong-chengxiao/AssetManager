@@ -318,6 +318,21 @@
   <data name="School of Electrical" xml:space="preserve">
     <value>电子信息学院</value>
   </data>
+  <data name="Scrapping Date" xml:space="preserve">
+    <value>报废时间</value>
+  </data>
+  <data name="Scrapping ID" xml:space="preserve">
+    <value>报废记录编号</value>
+  </data>
+  <data name="Scrapping Remark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="Scrapping Vendor ID" xml:space="preserve">
+    <value>承包单位编号</value>
+  </data>
+  <data name="Scrapping Vendor Name" xml:space="preserve">
+    <value>承包单位名</value>
+  </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>

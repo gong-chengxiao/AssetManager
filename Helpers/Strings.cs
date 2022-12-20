@@ -61,6 +61,18 @@ public static class Strings
     public static string NextMaintenanceDateText => _nextMaintenanceDateText;
     /********************************************************************************/
 
+    // 报废记录表
+    private static readonly string _scrappingIdText = "Scrapping ID".GetLocalized();
+    private static readonly string _scrappingDateText = "Scrapping Date".GetLocalized();
+    private static readonly string _scrappingRemarkText = "Scrapping Remark".GetLocalized();
+    private static readonly string _scrappingVendorIdText = "Scrapping Vendor ID".GetLocalized();
+    private static readonly string _scrappingVendorNameText = "Scrapping Vendor Name".GetLocalized();
+    public static string ScrappingIdText => _scrappingIdText;
+    public static string ScrappingDateText => _scrappingDateText;
+    public static string ScrappingRemarkText => _scrappingRemarkText;
+    public static string ScrappingVendorIdText => _scrappingVendorIdText;
+    public static string ScrappingVendorNameText => _scrappingVendorNameText;
+
     // 常规用语
     private static readonly string _yesText = "Yes".GetLocalized();
     private static readonly string _noText = "No".GetLocalized();

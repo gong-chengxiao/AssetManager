@@ -5,36 +5,99 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:st="using:AssetManager.Helpers">
 
-    <Grid x:Name="ContentArea">
-        <controls:DataGrid
-            AutoGenerateColumns="False"
-            GridLinesVisibility="Horizontal"
-            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
-            <controls:DataGrid.Resources>
-                <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
-            </controls:DataGrid.Resources>
-            <controls:DataGrid.Columns>
-                <!-- TODO: Replace column definitions to match real data. Consider adding Header values to Resources.resw. -->
-                <controls:DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                <controls:DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                <controls:DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                <controls:DataGridTemplateColumn Header="Symbol">
-                    <controls:DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <FontIcon
-                                HorizontalAlignment="Left"
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                Glyph="{Binding Symbol}"
-                                AutomationProperties.Name="{Binding SymbolName}" />
-                        </DataTemplate>
-                    </controls:DataGridTemplateColumn.CellTemplate>
-                </controls:DataGridTemplateColumn>
-            </controls:DataGrid.Columns>
-        </controls:DataGrid>
-    </Grid>
+    <ScrollViewer>
+        <Grid x:Name="ContentArea">
+            <StackPanel>
+                <ProgressBar IsIndeterminate="True" ShowPaused="False" ShowError="False"
+                             Visibility="{x:Bind ViewModel.ProgressBarVisibility,Mode=TwoWay}" Height="8"/>
+                <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="{ThemeResource SmallTopMargin}"
+                    CornerRadius="4"
+                    Height="55">
+
+                    <CommandBar DefaultLabelPosition="Right"
+                        VerticalAlignment="Center">
+                        <AppBarButton Width="100" Icon="Upload" Command="{x:Bind ViewModel.SubmittCommand}"
+                                      x:Uid="AssetTable_CommitButton"
+                                      HorizontalAlignment="Left"/>
+                        <AppBarButton Width="80" Icon="Filter" x:Uid="AssetTable_Filter">
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+
+                                    <MenuFlyoutSubItem Text="{x:Bind st:Strings.ScrappingDateText}">
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastOneMonth" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>1</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastThreeMonth" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>3</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastHalfYear" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>6</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastOneYear" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>12</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyoutSubItem>
+
+
+                                    <MenuFlyoutItem x:Uid="AssetTable_RemoveFilter"
+                                                Command="{x:Bind ViewModel.RefreshCommand}"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+
+                        <AppBarButton Width="50" Command="{x:Bind ViewModel.RefreshCommand}"
+                                  Icon="Refresh"/>
+
+                        <AppBarButton Width="50" Icon="Add" Command="{x:Bind ViewModel.AddCommand}"/>
+
+                    </CommandBar>
+                    <AutoSuggestBox x:Name="SearchBox"
+                            QueryIcon="Find"
+                            Width="240"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center" QuerySubmitted="SearchBox_QuerySubmitted"
+                            Margin="8 0 0 0"/>
+
+                </StackPanel>
+
+                <controls:DataGrid Margin="0,8,15,8"
+                                   AutoGenerateColumns="False"
+                                   GridLinesVisibility="Horizontal"
+                                   RowEditEnded="DataGrid_RowEditEnded"
+                                   RightTapped="DataGrid_RightTapped"
+                                   SelectedItem="{x:Bind ViewModel.SelectedRow, Mode=TwoWay}"
+                                   ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
+                    <controls:DataGrid.Resources>
+                        <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
+                    </controls:DataGrid.Resources>
+                    <controls:DataGrid.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Uid="AssetTable_DeleteFlyoutItem"
+                                            Command="{x:Bind ViewModel.DeleteRowCommand}"/>
+                        </MenuFlyout>
+                    </controls:DataGrid.ContextFlyout>
+                    <controls:DataGrid.Columns>
+
+                        <controls:DataGridTextColumn Binding="{Binding ScrappingID}" Header="{x:Bind st:Strings.ScrappingIdText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding AssetID}" Header="{x:Bind st:Strings.AssetIdText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding AssetName}" Header="{x:Bind st:Strings.AssetNameText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding ScrapVendorID}" Header="{x:Bind st:Strings.ScrappingVendorIdText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding ScrapVendorName}" Header="{x:Bind st:Strings.ScrappingVendorNameText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding ExecutorID}" Header="{x:Bind st:Strings.InChargePersonIdText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding ExecutorName}" Header="{x:Bind st:Strings.InChargePersonNameText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding ScrappingDate}" Header="{x:Bind st:Strings.ScrappingDateText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding ScrappingRemark}" Header="{x:Bind st:Strings.ScrappingRemarkText}"/>
+
+                    </controls:DataGrid.Columns>
+
+                </controls:DataGrid>
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>
