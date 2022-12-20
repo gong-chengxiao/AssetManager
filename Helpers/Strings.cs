@@ -38,7 +38,35 @@ public static class Strings
     public static string NameText => _nameText;
     public static string DepartmentText => _DepartmentText;
     public static string PhonenumberText => _PhonenumberText;
+    /********************************************************************************/
 
+    // 维修记录表
+    private static readonly string _maintenanceIdText = "Maintenance ID".GetLocalized();
+    private static readonly string _assetIdText = "Asset ID".GetLocalized();
+    private static readonly string _assetNameText = "Asset Name".GetLocalized();
+    private static readonly string _inChargePersonIdText = "Executor ID".GetLocalized();
+    private static readonly string _inChargePersonNameText = "Executor Name".GetLocalized();
+    private static readonly string _maintenanceContentText = "Maintenance Content".GetLocalized();
+    private static readonly string _isNormalText = "Is Normal".GetLocalized();
+    private static readonly string _maintenanceDateText = "Maintenance Date".GetLocalized();
+    private static readonly string _nextMaintenanceDateText = "Next Maintenance Date".GetLocalized();
+    public static string MaintenanceIdText => _maintenanceIdText;
+    public static string AssetIdText => _assetIdText;
+    public static string AssetNameText => _assetNameText;
+    public static string InChargePersonIdText => _inChargePersonIdText;
+    public static string InChargePersonNameText => _inChargePersonNameText;
+    public static string MaintenanceContentText => _maintenanceContentText;
+    public static string IsNormalText => _isNormalText;
+    public static string MaintenanceDateText => _maintenanceDateText;
+    public static string NextMaintenanceDateText => _nextMaintenanceDateText;
+    /********************************************************************************/
+
+    // 常规用语
+    private static readonly string _yesText = "Yes".GetLocalized();
+    private static readonly string _noText = "No".GetLocalized();
+
+    public static string YesText => _yesText;
+    public static string NoText => _noText;
 
     public static string AppDisplayName => _appDisplayName;
 

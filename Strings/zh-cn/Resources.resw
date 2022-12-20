@@ -117,71 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppDisplayName" xml:space="preserve">
-    <value>AssetManager</value>
+  <data name="Academic Affairs Office" xml:space="preserve">
+    <value>教务处</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
     <value>AssetManager</value>
   </data>
-  <data name="Shell_Home.Content" xml:space="preserve">
-    <value>主页</value>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>AssetManager</value>
   </data>
-  <data name="Shell_AssetTable.Content" xml:space="preserve">
-    <value>所有固定资产</value>
+  <data name="Asset ID" xml:space="preserve">
+    <value>资产编号</value>
   </data>
-  <data name="Shell_UserTable.Content" xml:space="preserve">
-    <value>人员记录</value>
-  </data>
-  <data name="Shell_PurchaseTable.Content" xml:space="preserve">
-    <value>购置记录</value>
-  </data>
-  <data name="Shell_MaintenanceTable.Content" xml:space="preserve">
-    <value>维修记录</value>
-  </data>
-  <data name="Shell_ScrappingTable.Content" xml:space="preserve">
-    <value>报废记录</value>
-  </data>
-  <data name="Settings_Personalization.Text" xml:space="preserve">
-    <value>外观设置</value>
-  </data>
-  <data name="Settings_Theme.Text" xml:space="preserve">
-    <value>主题</value>
-  </data>
-  <data name="Settings_Theme_Light.Content" xml:space="preserve">
-    <value>亮</value>
-  </data>
-  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
-    <value>暗</value>
-  </data>
-  <data name="Settings_Theme_Default.Content" xml:space="preserve">
-    <value>默认</value>
-  </data>
-  <data name="Settings_About.Text" xml:space="preserve">
-    <value>关于</value>
-  </data>
-  <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>2022年秋季学期“数据库原理实验”课程大作业</value>
-  </data>
-  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
-    <value>GitHub</value>
-  </data>
-  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
-    <value>https://github.com/cnyuan100/AssetManager</value>
-  </data>
-  <data name="Home_AfternoonGreeting" xml:space="preserve">
-    <value>下午好</value>
-  </data>
-  <data name="Home_EveningGreeting" xml:space="preserve">
-    <value>晚上好</value>
-  </data>
-  <data name="Home_MorningGreeting" xml:space="preserve">
-    <value>早上好</value>
-  </data>
-  <data name="Settings_AuthorDescription.Content" xml:space="preserve">
-    <value>2020301969 龚诚孝</value>
-  </data>
-  <data name="Settings_AuthorDescription.NavigateUri" xml:space="preserve">
-    <value>https://github.com/cnyuan100</value>
+  <data name="Asset Name" xml:space="preserve">
+    <value>资产名称</value>
   </data>
   <data name="AssetTable_AssetID.Header" xml:space="preserve">
     <value>编号</value>
@@ -216,11 +165,20 @@
   <data name="AssetTable_DateFilter.Text" xml:space="preserve">
     <value>购置日期</value>
   </data>
+  <data name="AssetTable_DeleteFlyoutItem.Text" xml:space="preserve">
+    <value>删除行</value>
+  </data>
+  <data name="AssetTable_DepartmentFilter.Text" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="AssetTable_DepartmentName.Header" xml:space="preserve">
+    <value>所属单位</value>
+  </data>
   <data name="AssetTable_Filter.Label" xml:space="preserve">
     <value>过滤</value>
   </data>
   <data name="AssetTable_GetterName.Header" xml:space="preserve">
-    <value>领取人</value>
+    <value>领用人</value>
   </data>
   <data name="AssetTable_LastHalfYear.Text" xml:space="preserve">
     <value>最近半年</value>
@@ -228,11 +186,23 @@
   <data name="AssetTable_LastOneMonth.Text" xml:space="preserve">
     <value>最近一个月</value>
   </data>
-  <data name="AssetTable_LastoneYear.Text" xml:space="preserve">
+  <data name="AssetTable_LastOneYear.Text" xml:space="preserve">
     <value>最近一年</value>
   </data>
   <data name="AssetTable_LastThreeMonth.Text" xml:space="preserve">
     <value>最近三个月</value>
+  </data>
+  <data name="AssetTable_NextHalfYear.Text" xml:space="preserve">
+    <value>未来半年内</value>
+  </data>
+  <data name="AssetTable_NextOneMonth.Text" xml:space="preserve">
+    <value>未来一个月内</value>
+  </data>
+  <data name="AssetTable_NextOneYear.Text" xml:space="preserve">
+    <value>未来一年内</value>
+  </data>
+  <data name="AssetTable_NextThreeMonth.Text" xml:space="preserve">
+    <value>未来三个月内</value>
   </data>
   <data name="AssetTable_RemoveFilter.Text" xml:space="preserve">
     <value>取消过滤</value>
@@ -255,32 +225,89 @@
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="Dialog_ErrorTittle" xml:space="preserve">
-    <value>错误</value>
+  <data name="Database Name" xml:space="preserve">
+    <value>数据库名称</value>
   </data>
-  <data name="Home_LoginButton.Content" xml:space="preserve">
-    <value>登录</value>
-  </data>
-  <data name="OK" xml:space="preserve">
-    <value>确认</value>
-  </data>
-  <data name="Academic Affairs Office" xml:space="preserve">
-    <value>教务处</value>
-  </data>
-  <data name="AssetTable_DepartmentFilter.Text" xml:space="preserve">
+  <data name="Department" xml:space="preserve">
     <value>单位</value>
   </data>
   <data name="Department of Publicity" xml:space="preserve">
     <value>党委宣传部</value>
   </data>
+  <data name="Dialog_ErrorTittle" xml:space="preserve">
+    <value>错误</value>
+  </data>
   <data name="Engineering Training Center" xml:space="preserve">
     <value>工训中心</value>
+  </data>
+  <data name="Executor ID" xml:space="preserve">
+    <value>负责人ID</value>
+  </data>
+  <data name="Executor Name" xml:space="preserve">
+    <value>负责人姓名</value>
+  </data>
+  <data name="Fatal error in Maintenance.GetLastMonthGridDataAsync(): Arg 'Type' doesn't match any DataType" xml:space="preserve">
+    <value>在Maintenance.GetLastMonthGridDataAsync()发生了致命错误：参数"Type"与DataType的任何一个枚举类型都不匹配。</value>
   </data>
   <data name="General Office of School" xml:space="preserve">
     <value>学校办公室</value>
   </data>
+  <data name="Home_AfternoonGreeting" xml:space="preserve">
+    <value>下午好</value>
+  </data>
+  <data name="Home_EveningGreeting" xml:space="preserve">
+    <value>晚上好</value>
+  </data>
+  <data name="Home_LoginButton.Content" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Home_MorningGreeting" xml:space="preserve">
+    <value>早上好</value>
+  </data>
+  <data name="Host" xml:space="preserve">
+    <value>主机地址</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Is Normal" xml:space="preserve">
+    <value>是否常规维护</value>
+  </data>
   <data name="Library" xml:space="preserve">
     <value>图书馆</value>
+  </data>
+  <data name="Log in" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Maintenance Content" xml:space="preserve">
+    <value>维护内容</value>
+  </data>
+  <data name="Maintenance Date" xml:space="preserve">
+    <value>维护时间</value>
+  </data>
+  <data name="Maintenance ID" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="Next Maintenance Date" xml:space="preserve">
+    <value>下次维护时间</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PersonName" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="Phonenumber" xml:space="preserve">
+    <value>电话号码</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>端口号</value>
   </data>
   <data name="School of Aeronautics" xml:space="preserve">
     <value>航空学院</value>
@@ -291,20 +318,56 @@
   <data name="School of Electrical" xml:space="preserve">
     <value>电子信息学院</value>
   </data>
-  <data name="Database Name" xml:space="preserve">
-    <value>数据库名称</value>
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
+    <value>GitHub</value>
   </data>
-  <data name="Host" xml:space="preserve">
-    <value>主机地址</value>
+  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
+    <value>https://github.com/cnyuan100/AssetManager</value>
   </data>
-  <data name="Log in" xml:space="preserve">
-    <value>登录</value>
+  <data name="Settings_About.Text" xml:space="preserve">
+    <value>关于</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>密码</value>
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <value>2022年秋季学期“数据库原理实验”课程大作业</value>
   </data>
-  <data name="Port" xml:space="preserve">
-    <value>端口号</value>
+  <data name="Settings_AuthorDescription.Content" xml:space="preserve">
+    <value>2020301969 龚诚孝</value>
+  </data>
+  <data name="Settings_AuthorDescription.NavigateUri" xml:space="preserve">
+    <value>https://github.com/cnyuan100</value>
+  </data>
+  <data name="Settings_Personalization.Text" xml:space="preserve">
+    <value>外观设置</value>
+  </data>
+  <data name="Settings_Theme.Text" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+    <value>暗</value>
+  </data>
+  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+    <value>默认</value>
+  </data>
+  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+    <value>亮</value>
+  </data>
+  <data name="Shell_AssetTable.Content" xml:space="preserve">
+    <value>所有固定资产</value>
+  </data>
+  <data name="Shell_Home.Content" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="Shell_MaintenanceTable.Content" xml:space="preserve">
+    <value>维修记录</value>
+  </data>
+  <data name="Shell_PurchaseTable.Content" xml:space="preserve">
+    <value>购置记录</value>
+  </data>
+  <data name="Shell_ScrappingTable.Content" xml:space="preserve">
+    <value>报废记录</value>
+  </data>
+  <data name="Shell_UserTable.Content" xml:space="preserve">
+    <value>人员记录</value>
   </data>
   <data name="Use Other Database" xml:space="preserve">
     <value>使用其他数据库</value>
@@ -312,22 +375,7 @@
   <data name="Username" xml:space="preserve">
     <value>用户名</value>
   </data>
-  <data name="AssetTable_DepartmentName.Header" xml:space="preserve">
-    <value>所属单位</value>
-  </data>
-  <data name="AssetTable_DeleteFlyoutItem.Text" xml:space="preserve">
-    <value>删除行</value>
-  </data>
-  <data name="Department" xml:space="preserve">
-    <value>单位</value>
-  </data>
-  <data name="ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="PersonName" xml:space="preserve">
-    <value>姓名</value>
-  </data>
-  <data name="Phonenumber" xml:space="preserve">
-    <value>电话号码</value>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
   </data>
 </root>

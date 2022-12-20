@@ -65,6 +65,7 @@ public partial class App : Application
             services.AddSingleton<ILoginConnectService, LoginConnectService>();
             services.AddSingleton<IAssetDataService, AssetDataService>();
             services.AddSingleton<IUserDataService, UserDataService>();
+            services.AddSingleton<IMaintenanceDataService, MaintenanceDataService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();

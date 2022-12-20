@@ -5,36 +5,127 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:st="using:AssetManager.Helpers"
     mc:Ignorable="d">
+    <ScrollViewer>
+        <Grid x:Name="ContentArea">
+            <StackPanel>
+                <ProgressBar IsIndeterminate="True" ShowPaused="False" ShowError="False"
+                             Visibility="{x:Bind ViewModel.ProgressBarVisibility,Mode=TwoWay}" Height="8"/>
+                <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="{ThemeResource SmallTopMargin}"
+                    CornerRadius="4"
+                    Height="55">
 
-    <Grid x:Name="ContentArea">
-        <controls:DataGrid
-            AutoGenerateColumns="False"
-            GridLinesVisibility="Horizontal"
-            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
-            <controls:DataGrid.Resources>
-                <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
-            </controls:DataGrid.Resources>
-            <controls:DataGrid.Columns>
-                <!-- TODO: Replace column definitions to match real data. Consider adding Header values to Resources.resw. -->
-                <controls:DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                <controls:DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                <controls:DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                <controls:DataGridTemplateColumn Header="Symbol">
-                    <controls:DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <FontIcon
-                                HorizontalAlignment="Left"
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                Glyph="{Binding Symbol}"
-                                AutomationProperties.Name="{Binding SymbolName}" />
-                        </DataTemplate>
-                    </controls:DataGridTemplateColumn.CellTemplate>
-                </controls:DataGridTemplateColumn>
-            </controls:DataGrid.Columns>
-        </controls:DataGrid>
-    </Grid>
+                    <CommandBar DefaultLabelPosition="Right"
+                        VerticalAlignment="Center">
+                        <AppBarButton Width="100" Icon="Upload" Command="{x:Bind ViewModel.SubmittCommand}"
+                                      x:Uid="AssetTable_CommitButton"
+                                      HorizontalAlignment="Left"/>
+                        <AppBarButton Width="80" Icon="Filter" x:Uid="AssetTable_Filter">
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+
+                                    <MenuFlyoutSubItem Text="{x:Bind st:Strings.MaintenanceDateText}">
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastOneMonth" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>1</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastThreeMonth" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>3</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastHalfYear" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>6</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_LastOneYear" Command="{x:Bind ViewModel.TimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>12</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyoutSubItem>
+
+                                    <MenuFlyoutSubItem Text="{x:Bind st:Strings.NextMaintenanceDateText}">
+                                        <MenuFlyoutItem x:Uid="AssetTable_NextOneMonth" Command="{x:Bind ViewModel.NextTimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>1</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_NextThreeMonth" Command="{x:Bind ViewModel.NextTimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>3</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_NextHalfYear" Command="{x:Bind ViewModel.NextTimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>6</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem x:Uid="AssetTable_NextOneYear" Command="{x:Bind ViewModel.NextTimeFilterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>12</MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyoutSubItem>
+
+                                    <MenuFlyoutSubItem Text="{x:Bind st:Strings.IsNormalText}">
+                                        <MenuFlyoutItem Text="{x:Bind st:Strings.YesText}"
+                                                    Command="{x:Bind ViewModel.FileterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="mnormal" Value="1"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem Text="{x:Bind st:Strings.NoText}"
+                                                    Command="{x:Bind ViewModel.FileterCommand}">
+                                            <MenuFlyoutItem.CommandParameter>
+                                                <st:KeyValueStringPair Key="mnormal" Value="0"/>
+                                            </MenuFlyoutItem.CommandParameter>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyoutSubItem>
+
+                                    <MenuFlyoutItem x:Uid="AssetTable_RemoveFilter"
+                                                Command="{x:Bind ViewModel.RefreshCommand}"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+
+                        <AppBarButton Width="50" Command="{x:Bind ViewModel.RefreshCommand}"
+                                  Icon="Refresh"/>
+
+                        <AppBarButton Width="50" Icon="Add" Command="{x:Bind ViewModel.AddCommand}"/>
+
+                    </CommandBar>
+                    <AutoSuggestBox x:Name="SearchBox"
+                            QueryIcon="Find"
+                            Width="240"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center" QuerySubmitted="SearchBox_QuerySubmitted"
+                            Margin="8 0 0 0"/>
+
+                </StackPanel>
+
+                <controls:DataGrid Margin="0,8,15,8"
+                                   AutoGenerateColumns="False"
+                                   GridLinesVisibility="Horizontal"
+                                   RowEditEnded="DataGrid_RowEditEnded"
+                                   RightTapped="DataGrid_RightTapped"
+                                   SelectedItem="{x:Bind ViewModel.SelectedRow, Mode=TwoWay}"
+                                   ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
+                    <controls:DataGrid.Resources>
+                        <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
+                    </controls:DataGrid.Resources>
+                    <controls:DataGrid.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Uid="AssetTable_DeleteFlyoutItem"
+                                            Command="{x:Bind ViewModel.DeleteRowCommand}"/>
+                        </MenuFlyout>
+                    </controls:DataGrid.ContextFlyout>
+                    <controls:DataGrid.Columns>
+
+                        <controls:DataGridTextColumn Binding="{Binding MaintenanceID}" Header="{x:Bind st:Strings.MaintenanceIdText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding AssetId}" Header="{x:Bind st:Strings.AssetIdText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding AssetName}" Header="{x:Bind st:Strings.AssetNameText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding InChargePersonID}" Header="{x:Bind st:Strings.InChargePersonIdText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding InChargePersonName}" Header="{x:Bind st:Strings.InChargePersonNameText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding MaintenanceContent}" Header="{x:Bind st:Strings.MaintenanceContentText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding IsNormal}" Header="{x:Bind st:Strings.IsNormalText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding MaintenanceDate}" Header="{x:Bind st:Strings.MaintenanceDateText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding NextMaintenanceDate}" Header="{x:Bind st:Strings.NextMaintenanceDateText}"/>
+
+                    </controls:DataGrid.Columns>
+
+                </controls:DataGrid>
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>
