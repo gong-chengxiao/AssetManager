@@ -162,7 +162,7 @@ public class AssetDataService : IAssetDataService
         try
         {
             var connection = await SqlConnector.RefreshConnectionAsync();
-            var queryString = $"select * from {_view} where {column} like '%{value}%' limit {_rowLimit}";
+            var queryString = $"select * from {_view} where {column} = '{value}' limit {_rowLimit}";
             using (var command = new MySqlCommand(queryString, connection))
             {
                 var reader = await command.ExecuteReaderAsync();
@@ -236,19 +236,18 @@ public class AssetDataService : IAssetDataService
         _schoolAssets = new List<SchoolAsset>();
         try
         {
-            foreach (var column in AppSettings.AssetViewColumns)
+
+            var connection = await SqlConnector.RefreshConnectionAsync();
+            var queryString = $"call get_a_by_time({month});";
+            using (var command = new MySqlCommand(queryString, connection))
             {
-                var connection = await SqlConnector.RefreshConnectionAsync();
-                var queryString = $"call get_a_by_time({month});";
-                using (var command = new MySqlCommand(queryString, connection))
+                var reader = await command.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
                 {
-                    var reader = await command.ExecuteReaderAsync();
-                    while (await reader.ReadAsync())
-                    {
-                        _schoolAssets.Add(await ParseFromReader(reader));
-                    }
-                };
-            }
+                    _schoolAssets.Add(await ParseFromReader(reader));
+                }
+            };
+
         }
         catch
         {
