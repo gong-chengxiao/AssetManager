@@ -92,6 +92,7 @@
                         <controls:DataGridTextColumn Binding="{Binding ExecutorName}" Header="{x:Bind st:Strings.InChargePersonNameText}"/>
                         <controls:DataGridTextColumn Binding="{Binding ScrappingDate}" Header="{x:Bind st:Strings.ScrappingDateText}"/>
                         <controls:DataGridTextColumn Binding="{Binding ScrappingRemark}" Header="{x:Bind st:Strings.ScrappingRemarkText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding Department}" Header="{x:Bind st:Strings.DepartmentText}"/>
 
                     </controls:DataGrid.Columns>
 

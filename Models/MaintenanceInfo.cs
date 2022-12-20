@@ -37,4 +37,8 @@ public class MaintenanceInfo
     {
         get; set;
     }
+    public string Department
+    {
+        get; set;
+    }
 }

@@ -35,8 +35,8 @@ public class ScrappingDataService : IScrappingDataService
                     $"{AppSettings.ScrappingTableColumns[2]} = '{value.ScrapVendorID}'," +
                     $"{AppSettings.ScrappingTableColumns[3]} = '{value.ExecutorID}'," +
                     $"{AppSettings.ScrappingTableColumns[4]} = '{value.ScrappingDate}'," +
-                    $"{AppSettings.ScrappingTableColumns[5]} = '{value.ScrappingRemark}';"
-                    ;
+                    $"{AppSettings.ScrappingTableColumns[5]} = '{value.ScrappingRemark}' " +
+                    $"where {AppSettings.ScrappingTableColumns[0]} = '{key}'";
 
                 using (var command = new MySqlCommand(queryString, connection))
                 {
@@ -96,6 +96,7 @@ public class ScrappingDataService : IScrappingDataService
             ExecutorName = reader.GetString(6),
             ScrappingDate = reader.GetDateTime(7).ToString(),
             ScrappingRemark = reader.GetString(8),
+            Department = reader.GetString(9),
 
         };
         return Task.FromResult(asset);

@@ -41,8 +41,8 @@ public class MaintenanceDataService:IMaintenanceDataService
                     $"{AppSettings.MaintenanceTableColumns[3]} = '{value.MaintenanceContent}'," +
                     $"{AppSettings.MaintenanceTableColumns[4]} = '{value.IsNormal}'," +
                     $"{AppSettings.MaintenanceTableColumns[5]} = '{value.MaintenanceDate}'," +
-                    $"{AppSettings.MaintenanceTableColumns[6]} = '{value.NextMaintenanceDate}';"
-                    ;
+                    $"{AppSettings.MaintenanceTableColumns[6]} = '{value.NextMaintenanceDate}' " +
+                    $"where {AppSettings.MaintenanceTableColumns[0]} = '{key}'";
 
                 using (var command = new MySqlCommand(queryString, connection))
                 {
@@ -98,7 +98,8 @@ public class MaintenanceDataService:IMaintenanceDataService
             MaintenanceContent = reader.GetString(5),
             IsNormal = reader.GetByte(6),
             MaintenanceDate = reader.GetDateTime(7).ToString(),
-            NextMaintenanceDate = reader.GetDateTime(8).ToString()
+            NextMaintenanceDate = reader.GetDateTime(8).ToString(),
+            Department = reader.GetString(9),
         };
         return Task.FromResult(asset);
     }

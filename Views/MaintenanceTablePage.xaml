@@ -120,6 +120,7 @@
                         <controls:DataGridTextColumn Binding="{Binding IsNormal}" Header="{x:Bind st:Strings.IsNormalText}"/>
                         <controls:DataGridTextColumn Binding="{Binding MaintenanceDate}" Header="{x:Bind st:Strings.MaintenanceDateText}"/>
                         <controls:DataGridTextColumn Binding="{Binding NextMaintenanceDate}" Header="{x:Bind st:Strings.NextMaintenanceDateText}"/>
+                        <controls:DataGridTextColumn Binding="{Binding Department}" Header="{x:Bind st:Strings.DepartmentText}"/>
 
                     </controls:DataGrid.Columns>
 

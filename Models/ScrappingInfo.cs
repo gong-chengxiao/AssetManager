@@ -38,4 +38,8 @@ public class ScrappingInfo
     {
         get; set;
     }
+    public string Department
+    {
+        get; set;
+    }
 }
