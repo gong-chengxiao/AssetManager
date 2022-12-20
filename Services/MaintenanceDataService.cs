@@ -247,7 +247,7 @@ public class MaintenanceDataService:IMaintenanceDataService
         try
         {
             var connection = await SqlConnector.RefreshConnectionAsync();
-            var queryString = $"delete from {_baseTable} where {AppSettings.MaintenanceTable[0]} = {key}";
+            var queryString = $"delete from {_baseTable} where {AppSettings.MaintenanceTableColumns[0]} = {key}";
             using (var command = new MySqlCommand(queryString, connection))
             {
                 await command.ExecuteNonQueryAsync();
