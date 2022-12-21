@@ -10,6 +10,7 @@ public class MaintenanceDataService:IMaintenanceDataService
 {
     private readonly string _view = AppSettings.MaintenanceView;
     private readonly string _baseTable = AppSettings.MaintenanceTable;
+    private readonly string[] _baseTableColumns = AppSettings.MaintenanceTableColumns;
     private readonly int _rowLimit = AppSettings.RowLimit;
 
     private List<MaintenanceInfo> _maintenanceInfo;
@@ -64,11 +65,28 @@ public class MaintenanceDataService:IMaintenanceDataService
         {
             var connection = await SqlConnector.RefreshConnectionAsync();
             var i = asset;
+
+            // 将该固定资产之前记录的mndate（预计下次维护时间）置为null，
+            // 表示这件资产有了更新的维护记录
             var queryString =
+                $"update {_baseTable} set {_baseTableColumns[6]} = null " +
+                $"where {_baseTableColumns[0]} = '{i.MaintenanceID}'";
+
+            using (var command = new MySqlCommand(queryString, connection))
+            {
+                await command.ExecuteNonQueryAsync();
+            };
+
+            queryString =
                 $"insert into {_baseTable} " +
                 $"value(" +
-                $"'{i.MaintenanceID}', '{i.AssetId}', '{i.InChargePersonID}', '{i.MaintenanceContent}'," +
-                $"'{i.IsNormal}', '{i.MaintenanceDate}', '{i.NextMaintenanceDate}'" +
+                $"'{i.MaintenanceID}', " +
+                $"'{i.AssetId}', " +
+                $"'{i.InChargePersonID}', " +
+                $"'{i.MaintenanceContent}'," +
+                $"'{i.IsNormal}', " +
+                $"'{i.MaintenanceDate}', " +
+                $"'{i.NextMaintenanceDate}'" +
                 $");"
                 ;
 
@@ -77,6 +95,54 @@ public class MaintenanceDataService:IMaintenanceDataService
                 await command.ExecuteNonQueryAsync();
             };
 
+        }
+        catch
+        {
+            throw;
+        }
+
+        await Task.CompletedTask;
+    }
+    public async Task ActivateAddWithoutPriKey(MaintenanceInfo asset)
+    {
+        try
+        {
+            var connection = await SqlConnector.RefreshConnectionAsync();
+            var i = asset;
+            // 将该固定资产之前记录的mndate（预计下次维护时间）置为null，
+            // 表示这件资产有了更新的维护记录
+            var queryString =
+                $"update {_baseTable} set {_baseTableColumns[6]} = null " +
+                $"where {_baseTableColumns[0]} = '{i.MaintenanceID}'";
+
+            using (var command = new MySqlCommand(queryString, connection))
+            {
+                await command.ExecuteNonQueryAsync();
+            };
+            
+            // 正常插入操作
+            queryString =
+                $"insert into {_baseTable} (" +
+                $"{_baseTableColumns[1]}, " +
+                $"{_baseTableColumns[2]}, " +
+                $"{_baseTableColumns[3]}, " +
+                $"{_baseTableColumns[4]}, " +
+                $"{_baseTableColumns[5]}, " +
+                $"{_baseTableColumns[6]} " +
+                $") " +
+                $"value(" +
+                $"'{i.AssetId}', " +
+                $"'{i.InChargePersonID}', " +
+                $"'{i.MaintenanceContent}'," +
+                $"'{i.IsNormal}', " +
+                $"'{i.MaintenanceDate}', " +
+                $"'{i.NextMaintenanceDate}'" +
+                $");"
+                ;
+            using (var command = new MySqlCommand(queryString, connection))
+            {
+                await command.ExecuteNonQueryAsync();
+            };
         }
         catch
         {
@@ -225,6 +291,31 @@ public class MaintenanceDataService:IMaintenanceDataService
             {
                 throw new Exception("Fatal error in Maintenance.GetLastMonthGridDataAsync(): Arg 'Type' doesn't match any DataType eumn.".GetLocalized());
             }
+            using (var command = new MySqlCommand(queryString, connection))
+            {
+                var reader = await command.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    _maintenanceInfo.Add(await ParseFromReader(reader));
+                }
+            };
+
+        }
+        catch
+        {
+            throw;
+        }
+
+        await Task.CompletedTask;
+        return _maintenanceInfo;
+    }
+    public async Task<IEnumerable<MaintenanceInfo>> GetComingWeekGridDateAsync()
+    {
+        _maintenanceInfo = new List<MaintenanceInfo>();
+        try
+        {
+            var connection = await SqlConnector.RefreshConnectionAsync();
+            var queryString = $"call get_mn_by_week(1);";
             using (var command = new MySqlCommand(queryString, connection))
             {
                 var reader = await command.ExecuteReaderAsync();

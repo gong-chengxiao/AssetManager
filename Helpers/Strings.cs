@@ -72,6 +72,7 @@ public static class Strings
     public static string ScrappingRemarkText => _scrappingRemarkText;
     public static string ScrappingVendorIdText => _scrappingVendorIdText;
     public static string ScrappingVendorNameText => _scrappingVendorNameText;
+    /********************************************************************************/
 
     // 常规用语
     private static readonly string _yesText = "Yes".GetLocalized();

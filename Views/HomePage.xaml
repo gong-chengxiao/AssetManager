@@ -4,16 +4,111 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="using:AssetManager.Models"
+    xmlns:st="using:AssetManager.Helpers"
     mc:Ignorable="d">
-
-    <Grid x:Name="ContentArea">
-        <StackPanel>
-            <TextBlock Text="{x:Bind ViewModel.GreetingMessage, Mode=OneWay}" 
+    <Page.Resources>
+        <st:BooleanToVisibility x:Key="BooleanToVisibility" />
+        <DataTemplate x:Key="MIListViewTemplate" x:DataType="md:MaintenanceInfo">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.RowSpan="2"
+                           Width="36"
+                           Text="{x:Bind AssetId}"
+                           Style="{ThemeResource SubtitleTextBlockStyle}"
+                           Margin="6"/>
+                <TextBlock Grid.Column="1"
+                           Margin="12,6,0,0"
+                           Style="{ThemeResource BodyTextBlockStyle}">
+                    <Run Text="{x:Bind AssetName}" FontWeight="Bold"/>
+                    <Run Text="{x:Bind Department}"/>
+                </TextBlock>
+                <TextBlock Grid.Column="1"
+                           Grid.Row="1"
+                           Margin="12,6,0,0"
+                           Style="{ThemeResource BodyTextBlockStyle}">
+                    <Run Text="{x:Bind st:Strings.NextMaintenanceDateText}"/>
+                    <Run Text="{x:Bind NextMaintenanceDate}"/>
+                </TextBlock>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <ScrollViewer>
+        <Grid x:Name="ContentArea">
+            <StackPanel>
+                <TextBlock Text="{x:Bind ViewModel.GreetingMessage, Mode=OneWay}" 
                        Style="{ThemeResource SubtitleTextBlockStyle}" />
-            
-            
-            
-            
-        </StackPanel>
-    </Grid>
+
+                <TextBlock Margin="0,24,0,0"
+                           Style="{StaticResource SubtitleTextBlockStyle}" 
+                           Text="{x:Bind ViewModel.MtArrangementText}"/>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                           Margin="0,8,0,0" Text="{x:Bind ViewModel.MiInfo,Mode=TwoWay}">
+                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <ListView x:Name="SourceListView"
+                    ItemTemplate="{StaticResource MIListViewTemplate}"
+                    ItemsSource="{x:Bind ViewModel.Source}"
+                    HorizontalAlignment="Stretch"
+                    CanDragItems="True"
+                    AllowDrop="True"
+                    SelectionMode="Extended" 
+                    BorderThickness="1"
+                    BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                    MinWidth="350" 
+                    Drop="ListView_Drop"
+                    DragItemsStarting="Source_DragItemsStarting"
+                    DragOver="Source_DragOver"
+                    Height="400"
+                    Margin="0,12,12,0">
+                    </ListView>
+                    <ListView x:Name="TargetListView"
+                    ItemTemplate="{StaticResource MIListViewTemplate}"
+                    Visibility="{x:Bind UpdateRecordToggle.IsOn, Converter={StaticResource BooleanToVisibility}, Mode=OneWay}"
+                    ItemsSource="{x:Bind ViewModel.Target}"
+                    CanDragItems="True"
+                    HorizontalAlignment="Stretch"
+                    AllowDrop="True"
+                    SelectionMode="Extended" 
+                    BorderThickness="1"
+                    BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                    MinWidth="350" 
+                    DragOver="Target_DragOver"
+                    Drop="ListView_Drop"
+                    DragItemsStarting="Target_DragItemsStarting"
+                    DragEnter="Target_DragEnter"
+                    Height="400">
+                    </ListView>
+                </StackPanel>
+                <ToggleSwitch x:Name="UpdateRecordToggle" 
+                          Header="{x:Bind ViewModel.UpdateMaintenanceText}" IsOn="False" />
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
+                        Margin="0,8,0,0" Spacing="24"
+                        Visibility="{x:Bind UpdateRecordToggle.IsOn, Converter={StaticResource BooleanToVisibility}, Mode=OneWay}">
+                    <CalendarDatePicker Header="{x:Bind ViewModel.MiDatePickerHeader}"
+                                    Date="{x:Bind ViewModel.CurMtDate,Mode=TwoWay}"/>
+                    <CalendarDatePicker Header="{x:Bind ViewModel.NMiDatePickerHeader}"
+                                    Date="{x:Bind ViewModel.NextMtDate,Mode=TwoWay}"/>
+                    <CheckBox Content="{x:Bind ViewModel.IsNormalText}" IsChecked="{x:Bind ViewModel.IsNormalMt,Mode=TwoWay}"/>
+                </StackPanel>
+                <TextBox TextWrapping="Wrap" AcceptsReturn="True" Margin="0,8,0,0"
+                         Width="350" HorizontalAlignment="Left"
+                         Header="{x:Bind ViewModel.SubmitContentText}"
+                         Text="{x:Bind ViewModel.MtContent, Mode=TwoWay}"
+                         Visibility="{x:Bind UpdateRecordToggle.IsOn, Converter={StaticResource BooleanToVisibility}, Mode=OneWay}"/>
+                <Button Margin="0,12,0,0"
+                        Style="{StaticResource AccentButtonStyle}" 
+                        Content="{x:Bind ViewModel.SubmitMiText}"
+                        Command="{x:Bind ViewModel.SubmitMiCommand}"/>
+                
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>

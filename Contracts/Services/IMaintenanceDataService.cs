@@ -9,8 +9,10 @@ public interface IMaintenanceDataService
     Task<IEnumerable<MaintenanceInfo>> GetRefreshGridDataAsync();
     Task<IEnumerable<MaintenanceInfo>> GetSearchGridDataAsync(string key);
     Task<IEnumerable<MaintenanceInfo>> GetLastMonthGridDataAsync(DateType type, string month);
+    Task<IEnumerable<MaintenanceInfo>> GetComingWeekGridDateAsync();
     Task ActivateUpdateList();
     void AddToUpdateList(string key, MaintenanceInfo maintenanceInfo);
     Task DeleteRowAsync(int key);
     Task ActivateAdd(MaintenanceInfo maintenanceInfo);
+    Task ActivateAddWithoutPriKey(MaintenanceInfo asset);
 }

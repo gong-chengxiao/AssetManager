@@ -225,6 +225,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="Copy to clipboard" xml:space="preserve">
+    <value>复制</value>
+  </data>
   <data name="Database Name" xml:space="preserve">
     <value>数据库名称</value>
   </data>
@@ -253,22 +256,25 @@
     <value>学校办公室</value>
   </data>
   <data name="Home_AfternoonGreeting" xml:space="preserve">
-    <value>下午好</value>
+    <value>下午好，</value>
   </data>
   <data name="Home_EveningGreeting" xml:space="preserve">
-    <value>晚上好</value>
+    <value>晚上好，</value>
   </data>
   <data name="Home_LoginButton.Content" xml:space="preserve">
     <value>登录</value>
   </data>
   <data name="Home_MorningGreeting" xml:space="preserve">
-    <value>早上好</value>
+    <value>早上好，</value>
   </data>
   <data name="Host" xml:space="preserve">
     <value>主机地址</value>
   </data>
   <data name="ID" xml:space="preserve">
     <value>ID</value>
+  </data>
+  <data name="In the coming week, you have" xml:space="preserve">
+    <value>未来一周内，有</value>
   </data>
   <data name="Is Normal" xml:space="preserve">
     <value>是否常规维护</value>
@@ -278,6 +284,12 @@
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
+  </data>
+  <data name="Maintenance Arrangement" xml:space="preserve">
+    <value>维护安排</value>
+  </data>
+  <data name="maintenance arrangements" xml:space="preserve">
+    <value>项维护安排</value>
   </data>
   <data name="Maintenance Content" xml:space="preserve">
     <value>维护内容</value>
@@ -293,6 +305,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>否</value>
+  </data>
+  <data name="Normal Maintenance" xml:space="preserve">
+    <value>常规维护</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>确认</value>
@@ -333,11 +348,17 @@
   <data name="Scrapping Vendor Name" xml:space="preserve">
     <value>承包单位名</value>
   </data>
+  <data name="Select maintenance date" xml:space="preserve">
+    <value>选择维护日期</value>
+  </data>
+  <data name="Select next maintenance arrangement date" xml:space="preserve">
+    <value>选择下次维护安排时间</value>
+  </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
-    <value>https://github.com/cnyuan100/AssetManager</value>
+    <value>https://github.com/gong-chengxiao/AssetManager</value>
   </data>
   <data name="Settings_About.Text" xml:space="preserve">
     <value>关于</value>
@@ -349,7 +370,7 @@
     <value>2020301969 龚诚孝</value>
   </data>
   <data name="Settings_AuthorDescription.NavigateUri" xml:space="preserve">
-    <value>https://github.com/cnyuan100</value>
+    <value>https://github.com/gong-chengxiao</value>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>外观设置</value>
@@ -384,11 +405,20 @@
   <data name="Shell_UserTable.Content" xml:space="preserve">
     <value>人员记录</value>
   </data>
+  <data name="Submit maintenance record" xml:space="preserve">
+    <value>提交维护记录</value>
+  </data>
+  <data name="Update maintenance record" xml:space="preserve">
+    <value>更新维护记录</value>
+  </data>
   <data name="Use Other Database" xml:space="preserve">
     <value>使用其他数据库</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>用户名</value>
+  </data>
+  <data name="Write maintenance content:" xml:space="preserve">
+    <value>本次维护内容：</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>是</value>
