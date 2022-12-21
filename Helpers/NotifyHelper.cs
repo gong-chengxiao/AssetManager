@@ -1,6 +1,8 @@
 ﻿using AssetManager.Views;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 
 namespace AssetManager.Helpers
@@ -23,6 +25,14 @@ namespace AssetManager.Helpers
                 Content = content,
                 PrimaryButtonText = "OK".GetLocalized(),
                 CloseButtonText = "Cancel".GetLocalized(),
+                SecondaryButtonText = "Copy to clipboard".GetLocalized(),
+                SecondaryButtonCommand = new RelayCommand(
+                () =>
+                {
+                    DataPackage dataPackage = new DataPackage();
+                    dataPackage.SetText(content);
+                    Clipboard.SetContent(dataPackage);
+                }),
                 DefaultButton = ContentDialogButton.Primary,
                 XamlRoot = XamlRoot
 
@@ -38,6 +48,14 @@ namespace AssetManager.Helpers
                 Content = content,
                 PrimaryButtonText = "OK".GetLocalized(),
                 CloseButtonText = "Cancel".GetLocalized(),
+                SecondaryButtonText = "Copy to clipboard".GetLocalized(),
+                SecondaryButtonCommand = new RelayCommand(
+                () =>
+                {
+                    DataPackage dataPackage = new DataPackage();
+                    dataPackage.SetText(content);
+                    Clipboard.SetContent(dataPackage);
+                }),
                 DefaultButton = ContentDialogButton.Primary,
                 XamlRoot = XamlRoot
 
