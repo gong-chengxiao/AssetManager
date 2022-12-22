@@ -249,6 +249,9 @@
   <data name="Dialog_ErrorTittle" xml:space="preserve">
     <value>错误</value>
   </data>
+  <data name="Dialog_WarningTitle" xml:space="preserve">
+    <value>警告</value>
+  </data>
   <data name="Engineering Training Center" xml:space="preserve">
     <value>工训中心</value>
   </data>

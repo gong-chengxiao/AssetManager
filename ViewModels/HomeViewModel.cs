@@ -149,7 +149,7 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
                     var picker = new FileSavePicker();
                     picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
                     picker.FileTypeChoices.Add("SQL File", new List<string>() { ".sql" });
-                    picker.SuggestedFileName = $"AssetManager_Data_Backup_{DateTime.Now}";
+                    picker.SuggestedFileName = $"AssetManager_Data_Backup_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}";
                     WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
                     var file = await picker.PickSaveFileAsync();
                     if (file != null)

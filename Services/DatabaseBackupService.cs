@@ -20,11 +20,15 @@ public class DatabaseBackupService : IDatabaseBackupService
     public async Task<string> BackupDatabaseAsync(string backupFile, params string[] table)
     {
         var command = $"mysqldump " +
-            $"-h {AppSettings.Host} " +
-            $"-P {AppSettings.Port} " +
-            $"-u {AppSettings.DbUserName} " +
-            $"-p {AppSettings.DbPassWord} " +
-            $"{AppSettings.DbName} --tables {string.Join(" ", table)} " +
+            $"--host={AppSettings.Host} " +
+            $"--port={AppSettings.Port} " +
+            $"--default-character-set=utf8 " +
+            $"--user={AppSettings.DbUserName} " +
+            $"--password={AppSettings.DbPassWord} " +
+            $"--protocol=tcp " +
+            $"--column-statistics=0 " +
+            $"-B {AppSettings.DbName} " +
+            $"--tables {string.Join(" ", table)} " +
             $"> {backupFile}";
 
         // 在命令行中执行command
@@ -41,12 +45,11 @@ public class DatabaseBackupService : IDatabaseBackupService
             await process.WaitForExitAsync();
             var output = process.StandardOutput.ReadToEnd();
             var error = process.StandardError.ReadToEnd();
+            await SaveTimeInSettingsAsync(DateTime.Now);
             if (!string.IsNullOrEmpty(error))
             {
                 throw new Exception(error);
             }
-            await SaveTimeInSettingsAsync(DateTime.Now);
-
             await Task.CompletedTask;
             return output;
         }

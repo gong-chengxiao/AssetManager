@@ -11,6 +11,8 @@ namespace AssetManager.Helpers
     {
         private static readonly string _errorTitle = "Dialog_ErrorTittle".GetLocalized();
         public static string ErrorTitle => _errorTitle;
+        private static readonly string _warningTitle = "Dialog_WarningTitle".GetLocalized();
+        public static string WarningTitle => _warningTitle;
 
         public static XamlRoot? XamlRoot
         {
@@ -42,25 +44,12 @@ namespace AssetManager.Helpers
 
         public static async Task<ContentDialogResult> ShowError(string content)
         {
-            ContentDialog dialog = new ContentDialog
-            {
-                Title = _errorTitle,
-                Content = content,
-                PrimaryButtonText = "OK".GetLocalized(),
-                CloseButtonText = "Cancel".GetLocalized(),
-                SecondaryButtonText = "Copy to clipboard".GetLocalized(),
-                SecondaryButtonCommand = new RelayCommand(
-                () =>
-                {
-                    DataPackage dataPackage = new DataPackage();
-                    dataPackage.SetText(content);
-                    Clipboard.SetContent(dataPackage);
-                }),
-                DefaultButton = ContentDialogButton.Primary,
-                XamlRoot = XamlRoot
+            return await ShowNotifyDialog(_errorTitle, content);
+        }
 
-            };
-            return await dialog.ShowAsync();
+        public static async Task<ContentDialogResult> ShowWarning(string content)
+        {
+            return await ShowNotifyDialog(_warningTitle, content);
         }
     }
 }
