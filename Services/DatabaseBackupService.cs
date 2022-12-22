@@ -45,7 +45,10 @@ public class DatabaseBackupService : IDatabaseBackupService
             await process.WaitForExitAsync();
             var output = process.StandardOutput.ReadToEnd();
             var error = process.StandardError.ReadToEnd();
+
             await SaveTimeInSettingsAsync(DateTime.Now);
+            LastBackupTime = DateTime.Now;
+
             if (!string.IsNullOrEmpty(error))
             {
                 throw new Exception(error);
