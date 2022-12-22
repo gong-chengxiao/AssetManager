@@ -6,7 +6,7 @@ using AssetManager.Models;
 using MySqlConnector;
 
 namespace AssetManager.Services;
-public class MaintenanceDataService:IMaintenanceDataService
+public class MaintenanceDataService : IMaintenanceDataService
 {
     private readonly string _view = AppSettings.MaintenanceView;
     private readonly string _baseTable = AppSettings.MaintenanceTable;
@@ -119,7 +119,7 @@ public class MaintenanceDataService:IMaintenanceDataService
             {
                 await command.ExecuteNonQueryAsync();
             };
-            
+
             // 正常插入操作
             queryString =
                 $"insert into {_baseTable} (" +
@@ -164,7 +164,7 @@ public class MaintenanceDataService:IMaintenanceDataService
             MaintenanceContent = reader.GetString(5),
             IsNormal = reader.GetByte(6),
             MaintenanceDate = reader.GetDateTime(7).ToString(),
-            NextMaintenanceDate = reader.GetDateTime(8).ToString(),
+            NextMaintenanceDate = reader.IsDBNull(8) ? "null" : reader.GetDateTime(8).ToString(),
             Department = reader.GetString(9),
         };
         return Task.FromResult(asset);
