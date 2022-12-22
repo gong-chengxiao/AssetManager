@@ -52,11 +52,11 @@
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe716;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_PurchaseTable" helpers:NavigationHelper.NavigateTo="AssetManager.ViewModels.PurchaseTableViewModel">
+                <!--<NavigationViewItem x:Uid="Shell_PurchaseTable" helpers:NavigationHelper.NavigateTo="AssetManager.ViewModels.PurchaseTableViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7bf;"/>
                     </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                </NavigationViewItem>-->
                 <NavigationViewItem x:Uid="Shell_MaintenanceTable" helpers:NavigationHelper.NavigateTo="AssetManager.ViewModels.MaintenanceTableViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe90f;"/>
