@@ -13,14 +13,21 @@ public class ActivationService : IActivationService
     private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
     private readonly IThemeSelectorService _themeSelectorService;
+    private readonly IDatabaseBackupService _databaseBackupService;
     private UIElement? _shell = null;
     private UIElement? _login = null;
 
-    public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, IThemeSelectorService themeSelectorService)
+    public ActivationService(
+        ActivationHandler<LaunchActivatedEventArgs> defaultHandler, 
+        IEnumerable<IActivationHandler> activationHandlers,
+        IThemeSelectorService themeSelectorService,
+        IDatabaseBackupService databaseBackupService
+        )
     {
         _defaultHandler = defaultHandler;
         _activationHandlers = activationHandlers;
         _themeSelectorService = themeSelectorService;
+        _databaseBackupService = databaseBackupService;
     }
 
     public async Task ActivateAsync(object activationArgs)
@@ -65,6 +72,7 @@ public class ActivationService : IActivationService
     private async Task InitializeAsync()
     {
         await _themeSelectorService.InitializeAsync().ConfigureAwait(false);
+        await _databaseBackupService.InitializeAsync().ConfigureAwait(false);
         await Task.CompletedTask;
     }
 

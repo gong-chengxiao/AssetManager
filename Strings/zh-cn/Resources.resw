@@ -222,14 +222,23 @@
   <data name="AssetType_Small" xml:space="preserve">
     <value>小</value>
   </data>
+  <data name="Backup right now" xml:space="preserve">
+    <value>立即备份</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
   <data name="Copy to clipboard" xml:space="preserve">
     <value>复制</value>
   </data>
+  <data name="Database backup" xml:space="preserve">
+    <value>数据库备份</value>
+  </data>
   <data name="Database Name" xml:space="preserve">
     <value>数据库名称</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>天没有进行备份了。</value>
   </data>
   <data name="Department" xml:space="preserve">
     <value>单位</value>
@@ -248,6 +257,9 @@
   </data>
   <data name="Executor Name" xml:space="preserve">
     <value>负责人姓名</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>浏览</value>
   </data>
   <data name="Fatal error in Maintenance.GetLastMonthGridDataAsync(): Arg 'Type' doesn't match any DataType" xml:space="preserve">
     <value>在Maintenance.GetLastMonthGridDataAsync()发生了致命错误：参数"Type"与DataType的任何一个枚举类型都不匹配。</value>
@@ -306,6 +318,12 @@
   <data name="No" xml:space="preserve">
     <value>否</value>
   </data>
+  <data name="No backup file path selected" xml:space="preserve">
+    <value>没有指定备份路径</value>
+  </data>
+  <data name="No table selected" xml:space="preserve">
+    <value>没有选择任何数据表</value>
+  </data>
   <data name="Normal Maintenance" xml:space="preserve">
     <value>常规维护</value>
   </data>
@@ -347,6 +365,12 @@
   </data>
   <data name="Scrapping Vendor Name" xml:space="preserve">
     <value>承包单位名</value>
+  </data>
+  <data name="Select a backup file" xml:space="preserve">
+    <value>选择备份文件</value>
+  </data>
+  <data name="Select file path" xml:space="preserve">
+    <value>选择备份文件路径</value>
   </data>
   <data name="Select maintenance date" xml:space="preserve">
     <value>选择维护日期</value>
@@ -394,7 +418,7 @@
     <value>主页</value>
   </data>
   <data name="Shell_MaintenanceTable.Content" xml:space="preserve">
-    <value>维修记录</value>
+    <value>维护记录</value>
   </data>
   <data name="Shell_PurchaseTable.Content" xml:space="preserve">
     <value>购置记录</value>
@@ -405,8 +429,14 @@
   <data name="Shell_UserTable.Content" xml:space="preserve">
     <value>人员记录</value>
   </data>
+  <data name="SQL File" xml:space="preserve">
+    <value>SQL文件</value>
+  </data>
   <data name="Submit maintenance record" xml:space="preserve">
     <value>提交维护记录</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>数据表</value>
   </data>
   <data name="Update maintenance record" xml:space="preserve">
     <value>更新维护记录</value>
@@ -422,5 +452,8 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>是</value>
+  </data>
+  <data name="You haven't done a backup in" xml:space="preserve">
+    <value>你已经有</value>
   </data>
 </root>

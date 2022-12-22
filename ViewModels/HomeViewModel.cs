@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
+using AssetManager.Core.Models;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -11,13 +12,46 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml;
 using Windows.ApplicationModel.DataTransfer;
 using CommunityToolkit.Mvvm.Input;
+using Windows.Storage.Pickers;
+using Windows.Storage;
 
 namespace AssetManager.ViewModels;
 
 public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPropertyChanged
 {
     private readonly IMaintenanceDataService _maintenanceDataService;
+    private readonly IDatabaseBackupService _databaseBackupService;
+    private DateTime _lastBackupTime;
     private string _greetingMessage;
+    public bool[] TableChecked
+    {
+        get; set;
+    } =
+    {
+        true,
+        true,
+        true,
+        true,
+        true,
+    };
+    public string[] Tables =
+    {
+        AppSettings.AssetTable,
+        AppSettings.MaintenanceTable,
+        AppSettings.UserTable,
+        AppSettings.ScrappingTable,
+        AppSettings.VendorTable,
+    };
+    private string _backupFilePath;
+    public string BackupFilePath
+    {
+        get => _backupFilePath;
+        set
+        {
+            _backupFilePath = value;
+            OnPropertyChanged();
+        }
+    }
     public string GreetingMessage
     {
         get => _greetingMessage;
@@ -26,32 +60,42 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
     public ObservableCollection<MaintenanceInfo> Target { get; } = new();
     public DateTimeOffset CurMtDate
     {
-        get;set;
+        get; set;
     }
     public DateTimeOffset NextMtDate
     {
-        get;set;
+        get; set;
     }
     public string MtContent
     {
-        get;set;
+        get; set;
     }
     public bool IsNormalMt
     {
-        set;get;
+        set; get;
     }
     public ICommand SubmitMiCommand
     {
         get;
     }
-    public HomeViewModel(IMaintenanceDataService maintenanceDataService)
+    public ICommand BackupCommand
+    {
+        get;
+    }
+    public ICommand ExploreCommand
+    {
+        get;
+    }
+    public HomeViewModel(IMaintenanceDataService maintenanceDataService, IDatabaseBackupService databaseBackupService)
     {
         _greetingMessage = GetGreetingMessage();
         _maintenanceDataService = maintenanceDataService;
+        _databaseBackupService = databaseBackupService;
         IsNormalMt = true;
         CurMtDate = DateTimeOffset.Now;
         NextMtDate = DateTimeOffset.Now;
         MtContent = "";
+        _lastBackupTime = databaseBackupService.LastBackupTime;
         SubmitMiCommand = new RelayCommand(
             async () =>
             {
@@ -69,7 +113,54 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
                 }
                 catch (Exception e)
                 {
-                    NotifyHelper.ShowError(e.Message);
+                    await NotifyHelper.ShowError(e.Message);
+                }
+            });
+        BackupCommand = new RelayCommand(
+            async () =>
+            {
+                try
+                {
+                    string[] selectedTables = await GetSelectedTable();
+                    if (selectedTables.Length == 0)
+                    {
+                        throw new Exception("No table selected".GetLocalized());
+                    }
+                    if (BackupFilePath == null)
+                    {
+                        throw new Exception("No backup file path selected".GetLocalized());
+                    }
+                    await databaseBackupService.BackupDatabaseAsync(BackupFilePath, selectedTables);
+                }
+                catch (Exception e)
+                {
+                    await NotifyHelper.ShowError(e.Message);
+                }
+            });
+        ExploreCommand = new RelayCommand(
+            async () =>
+            {
+                // 浏览并选择文件
+                try
+                {
+                    var window = new Microsoft.UI.Xaml.Window();
+                    var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+
+                    var picker = new FileSavePicker();
+                    picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+                    picker.FileTypeChoices.Add("SQL File", new List<string>() { ".sql" });
+                    picker.SuggestedFileName = $"AssetManager_Data_Backup_{DateTime.Now}";
+                    WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+                    var file = await picker.PickSaveFileAsync();
+                    if (file != null)
+                    {
+                        BackupFilePath = file.Path;
+                    }
+                }
+
+                catch (Exception e)
+                {
+                    await NotifyHelper.ShowError(e.Message);
                 }
             });
 
@@ -81,6 +172,25 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
                         : hour < 18 ? "Home_AfternoonGreeting".GetLocalized()
                         : "Home_EveningGreeting".GetLocalized();
         return $"{greeting} {Environment.UserName}!";
+    }
+
+    private async Task<string[]> GetSelectedTable()
+    {
+        List<string> selectedTable = new();
+        for (var i = 0; i < Tables.Length; i++)
+        {
+            if (TableChecked[i])
+            {
+                selectedTable.Add(Tables[i]);
+            }
+        }
+
+        await Task.CompletedTask;
+        return selectedTable.ToArray();
+    }
+    private int GetLastBackupPassDays()
+    {
+        return (DateTime.Now - _lastBackupTime).Days;
     }
     public async void OnNavigatedTo(object parameter)
     {
@@ -228,6 +338,7 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
 
     private string _submitMiText = "Submit maintenance record".GetLocalized();
     public string SubmitMiText => _submitMiText;
+
     private string _miInfoPre = "In the coming week, you have".GetLocalized();
     private string _miInfoPost = "maintenance arrangements".GetLocalized();
     private int _miInfoCount = -1;
@@ -244,6 +355,12 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
             catch { }
         }
     }
+
+
+    private string _backupPre = "You haven't done a backup in".GetLocalized();
+    private string _backupPost = "days".GetLocalized();
+    public string BackupInfo => $"{_backupPre} {GetLastBackupPassDays()} {_backupPost}";
+
     private string _submitContentText = "Write maintenance content:".GetLocalized();
     public string SubmitContentText => _submitContentText;
 
@@ -252,4 +369,9 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
 
     private string _mtArrangementText = "Maintenance Arrangement".GetLocalized();
     public string MtArrangementText => _mtArrangementText;
+
+    public string DatabaseBackupText => "Database backup".GetLocalized();
+    public string BackupRightnowText => "Backup right now".GetLocalized();
+    public string SelectFilePathText => "Select file path".GetLocalized();
+    public string ExploreText => "Explore".GetLocalized();
 }

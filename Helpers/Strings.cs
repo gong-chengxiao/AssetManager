@@ -29,6 +29,8 @@ public static class Strings
     private static readonly string _portText = "Port".GetLocalized();
     private static readonly string _dbNameText = "Database Name".GetLocalized();
 
+    private static readonly string _tablesText = "Tables".GetLocalized();
+
     // 用户表
     private static readonly string _userIdText = "ID".GetLocalized();
     private static readonly string _nameText = "PersonName".GetLocalized();
@@ -107,6 +109,6 @@ public static class Strings
     public static string HostAddressText => _hostAddressText;
     public static string PortText => _portText;
     public static string DbNameText => _dbNameText;
-    
 
+    public static string TablesText => _tablesText;
 }

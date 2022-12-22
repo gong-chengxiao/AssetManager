@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="using:AssetManager.Models"
     xmlns:st="using:AssetManager.Helpers"
+    xmlns:cm="using:AssetManager.Core.Models"
     mc:Ignorable="d">
     <Page.Resources>
         <st:BooleanToVisibility x:Key="BooleanToVisibility" />
@@ -46,12 +47,12 @@
                 <TextBlock Text="{x:Bind ViewModel.GreetingMessage, Mode=OneWay}" 
                        Style="{ThemeResource SubtitleTextBlockStyle}" />
 
+                
                 <TextBlock Margin="0,24,0,0"
                            Style="{StaticResource SubtitleTextBlockStyle}" 
                            Text="{x:Bind ViewModel.MtArrangementText}"/>
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                           Margin="0,8,0,0" Text="{x:Bind ViewModel.MiInfo,Mode=TwoWay}">
-                </TextBlock>
+                           Margin="0,8,0,0" Text="{x:Bind ViewModel.MiInfo,Mode=TwoWay}"/>
                 <StackPanel Orientation="Horizontal">
                     <ListView x:Name="SourceListView"
                     ItemTemplate="{StaticResource MIListViewTemplate}"
@@ -107,7 +108,43 @@
                         Style="{StaticResource AccentButtonStyle}" 
                         Content="{x:Bind ViewModel.SubmitMiText}"
                         Command="{x:Bind ViewModel.SubmitMiCommand}"/>
+
                 
+                <TextBlock Margin="0,24,0,0"
+                           Style="{StaticResource SubtitleTextBlockStyle}" 
+                           Text="{x:Bind ViewModel.DatabaseBackupText}"/>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                           Margin="0,8,0,0" Text="{x:Bind ViewModel.BackupInfo}"/>
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
+                           Text="{x:Bind st:Strings.TablesText}"
+                           Margin="0,8,0,8"/>
+                <ListView BorderThickness="1" Width="350" HorizontalAlignment="Left"
+                          BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}">
+                    <CheckBox Content="{x:Bind ViewModel.Tables[0]}"
+                          IsChecked="{x:Bind ViewModel.TableChecked[0]}"/>
+                    <CheckBox Content="{x:Bind ViewModel.Tables[1]}"
+                          IsChecked="{x:Bind ViewModel.TableChecked[1]}"/>
+                    <CheckBox Content="{x:Bind ViewModel.Tables[2]}"
+                          IsChecked="{x:Bind ViewModel.TableChecked[2]}"/>
+                    <CheckBox Content="{x:Bind ViewModel.Tables[3]}"
+                          IsChecked="{x:Bind ViewModel.TableChecked[3]}"/>
+                    <CheckBox Content="{x:Bind ViewModel.Tables[4]}"
+                          IsChecked="{x:Bind ViewModel.TableChecked[4]}"/>
+                </ListView>
+                <TextBlock Margin="0,8,0,0" Style="{ThemeResource BodyTextBlockStyle}"
+                           Text="{x:Bind ViewModel.SelectFilePathText}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBox PlaceholderText="{x:Bind ViewModel.SelectFilePathText}" 
+                             Width="350" Text="{x:Bind ViewModel.BackupFilePath,Mode=TwoWay}"/>
+                    <Button Command="{x:Bind ViewModel.ExploreCommand}" Margin="15,0,0,0"
+                            Content="{x:Bind ViewModel.ExploreText}"/>
+                </StackPanel>
+
+                <Button Margin="0,16,0,32"
+                        Style="{StaticResource AccentButtonStyle}" 
+                        Content="{x:Bind ViewModel.BackupRightnowText}"
+                        Command="{x:Bind ViewModel.BackupCommand}"/>
+
             </StackPanel>
         </Grid>
     </ScrollViewer>
