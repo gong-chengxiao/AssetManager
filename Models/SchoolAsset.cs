@@ -40,14 +40,24 @@ public class SchoolAsset
     {
         get; set;
     }
-
+    public int AssetVendorID
+    {
+        get; set;
+    }
     public string AssetVendorName
     {
         get; set;
     }
 
-    // 领用人ID
+    public int GetterID
+    {
+        get; set;
+    }
     public string GetterName
+    {
+        get; set;
+    }
+    public int UserID
     {
         get; set;
     }

@@ -163,9 +163,12 @@
                         <controls:DataGridTextColumn Binding="{Binding AssetPurchaseDate}" x:Uid="AssetTable_AssetPurchaseDate" />
                         <controls:DataGridTextColumn Binding="{Binding AssetPurchasePrice}" x:Uid="AssetTable_AssetPurchasePrice" />
                         <controls:DataGridTextColumn Binding="{Binding AssetPurchaseOrderNumber}" x:Uid="AssetTable_AssetPurchaseOrderNumber" />
+                        <controls:DataGridTextColumn Binding="{Binding AssetVendorID}" x:Uid="AssetTable_AssetVendorID" />
                         <controls:DataGridTextColumn Binding="{Binding AssetVendorName}" x:Uid="AssetTable_AssetVendorName" />
+                        <controls:DataGridTextColumn Binding="{Binding GetterID}" x:Uid="AssetTable_GetterID" />
                         <controls:DataGridTextColumn Binding="{Binding GetterName}" x:Uid="AssetTable_GetterName" />
-                        <controls:DataGridTextColumn Binding="{Binding UserName}" x:Uid="AssetTable_UserName" />
+                        <controls:DataGridTextColumn Binding="{Binding UserID}" x:Uid="AssetTable_UserID" />
+                        <controls:DataGridTextColumn Binding="{Binding UserName}" x:Uid="AssetTable_UserID" />
                         <controls:DataGridTextColumn Binding="{Binding DepartmentName}" x:Uid="AssetTable_DepartmentName" />
 
                     </controls:DataGrid.Columns>

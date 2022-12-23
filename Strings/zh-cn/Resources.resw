@@ -156,6 +156,9 @@
   <data name="AssetTable_AssetType.Header" xml:space="preserve">
     <value>种类</value>
   </data>
+  <data name="AssetTable_AssetVendorID.Header" xml:space="preserve">
+    <value>供应商ID</value>
+  </data>
   <data name="AssetTable_AssetVendorName.Header" xml:space="preserve">
     <value>供应商</value>
   </data>
@@ -177,8 +180,11 @@
   <data name="AssetTable_Filter.Label" xml:space="preserve">
     <value>过滤</value>
   </data>
+  <data name="AssetTable_GetterID.Header" xml:space="preserve">
+    <value>采购人ID</value>
+  </data>
   <data name="AssetTable_GetterName.Header" xml:space="preserve">
-    <value>领用人</value>
+    <value>采购人</value>
   </data>
   <data name="AssetTable_LastHalfYear.Text" xml:space="preserve">
     <value>最近半年</value>
@@ -206,6 +212,9 @@
   </data>
   <data name="AssetTable_RemoveFilter.Text" xml:space="preserve">
     <value>取消过滤</value>
+  </data>
+  <data name="AssetTable_UserID.Header" xml:space="preserve">
+    <value>使用人ID</value>
   </data>
   <data name="AssetTable_UserName.Header" xml:space="preserve">
     <value>使用人</value>

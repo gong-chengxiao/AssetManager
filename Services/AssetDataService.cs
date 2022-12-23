@@ -37,10 +37,6 @@ public class AssetDataService : IAssetDataService
                 var value = i.Value;
 
                 var queryString =
-                    $"begin;" +
-                    $"select {_vidText} into @_vid from {_vendorTable} where {_vnameText} = {value.AssetVendorName};" +
-                    $"select {_uidText} into @_gtuid from {_userTable} where {_unameText} = {value.GetterName};" +
-                    $"select {_uidText} into @_usuid from {_userTable} where {_unameText} = {value.UserName};" +
                     $"update {_assetTable} set " +
                     $"{AppSettings.AssetTableColumns[0]} = '{value.AssetID}'," +
                     $"{AppSettings.AssetTableColumns[1]} = '{value.AssetName}'," +
@@ -50,11 +46,10 @@ public class AssetDataService : IAssetDataService
                     $"{AppSettings.AssetTableColumns[5]} = '{value.AssetPurchaseDate}'," +
                     $"{AppSettings.AssetTableColumns[6]} = '{value.AssetPurchasePrice}'," +
                     $"{AppSettings.AssetTableColumns[7]} = '{value.AssetPurchaseOrderNumber}'," +
-                    $"{AppSettings.AssetTableColumns[8]} = @_vid," +
-                    $"{AppSettings.AssetTableColumns[9]} = @_gtuid," +
-                    $"{AppSettings.AssetTableColumns[10]} = @_usuid " +
-                    $"where {AppSettings.AssetTableColumns[0]} = {key};" +
-                    $"commit;";
+                    $"{AppSettings.AssetTableColumns[8]} = '{value.AssetVendorID}'," +
+                    $"{AppSettings.AssetTableColumns[9]} = '{value.GetterID}'," +
+                    $"{AppSettings.AssetTableColumns[10]} = '{value.UserID}' " +
+                    $"where {AppSettings.AssetTableColumns[0]} = {key};";
 
                 using (var command = new MySqlCommand(queryString, connection))
                 {
@@ -78,10 +73,6 @@ public class AssetDataService : IAssetDataService
             var connection = await SqlConnector.RefreshConnectionAsync();
             var i = asset;
             var queryString =
-                $"begin;" +
-                $"select vid into @_vid from v where vname='{i.AssetVendorName}';" +
-                $"select uid into @_gtid from u where uname='{i.GetterName}';" +
-                $"select uid into @_usid from u where uname='{i.UserName}';" +
                 $"insert into {_assetTable} " +
                 $"value(" +
                 $"'{i.AssetID}'," +
@@ -92,8 +83,10 @@ public class AssetDataService : IAssetDataService
                 $"'{i.AssetPurchaseDate}'," +
                 $"'{i.AssetPurchasePrice}'," +
                 $"'{i.AssetPurchaseOrderNumber}'," +
-                $"@_vid, @_gtid, @_usid);" +
-                $"commit;";
+                $"'{i.AssetVendorID}'," +
+                $"'{i.GetterID}'," +
+                $"'{i.UserID}'" +
+                $")";
             using (var command = new MySqlCommand(queryString, connection))
             {
                 await command.ExecuteNonQueryAsync();
@@ -120,10 +113,13 @@ public class AssetDataService : IAssetDataService
             AssetPurchaseDate = reader.GetDateTime(5).ToString(),
             AssetPurchasePrice = reader.GetDouble(6),
             AssetPurchaseOrderNumber = reader.GetString(7),
-            AssetVendorName = reader.GetString(8),
-            GetterName = reader.GetString(9),
-            UserName = reader.GetString(10),
-            DepartmentName = reader.GetString(11)
+            AssetVendorID = reader.GetInt32(8),
+            AssetVendorName = reader.GetString(9),
+            GetterID = reader.GetInt32(10),
+            GetterName = reader.GetString(11),
+            UserID = reader.GetInt32(12),
+            UserName = reader.GetString(13),
+            DepartmentName = reader.GetString(14)
 
         };
         return Task.FromResult(asset);
