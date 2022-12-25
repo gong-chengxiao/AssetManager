@@ -14,6 +14,7 @@ using Windows.ApplicationModel.DataTransfer;
 using CommunityToolkit.Mvvm.Input;
 using Windows.Storage.Pickers;
 using Windows.Storage;
+using System.Text;
 
 namespace AssetManager.ViewModels;
 
@@ -24,7 +25,11 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
     private DateTime _lastBackupTime;
     private string _greetingMessage;
     public bool RoutinesChecked = false;
-    public string RoutinesCheckedText = "Dump with routines (views, triggers, procedures, functions)".GetLocalized();
+    public string RoutinesCheckedText = "Dump with routines (procedures, functions)".GetLocalized();
+    public bool TriggersChecked = false;
+    public string TriggersCheckedText = "Dump with triggers".GetLocalized();
+    public bool ViewsChecked = false;
+    public string ViewsCheckedText = "Dump with views".GetLocalized();
     public bool[] TableChecked
     {
         get; set;
@@ -132,14 +137,25 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
                     {
                         throw new Exception("No backup file path selected".GetLocalized());
                     }
+                    StringBuilder args = new();
                     if (RoutinesChecked)
                     {
-                        await _databaseBackupService.BackupDatabaseWithRoutinesAsync(_backupFilePath, selectedTables);
+                        args.Append("--routines ");
                     }
-                    else
+                    if (TriggersChecked)
                     {
-                        await _databaseBackupService.BackupDatabaseAsync(_backupFilePath, selectedTables);
+                        args.Append("--triggers ");
                     }
+                    if (ViewsChecked)
+                    {
+                        selectedTables.Append(AppSettings.AssetView);
+                        selectedTables.Append(AppSettings.MaintenanceView);
+                        selectedTables.Append(AppSettings.ScrappingView);
+                        selectedTables.Append(AppSettings.UserView);
+                        
+                    }
+                    await _databaseBackupService.BackupDatabaseAsync(_backupFilePath, args.ToString(), selectedTables);
+
                 }
                 catch (Exception e)
                 {

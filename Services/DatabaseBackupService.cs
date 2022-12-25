@@ -17,7 +17,7 @@ public class DatabaseBackupService : IDatabaseBackupService
         _localSettingsService = localSettingsService;
     }
 
-    public async Task<string> BackupDatabaseAsync(string backupFile, params string[] table)
+    public async Task<string> BackupDatabaseAsync(string backupFile, string externArgs, params string[] table)
     {
         var command = $"mysqldump " +
             $"--host={AppSettings.Host} " +
@@ -27,6 +27,7 @@ public class DatabaseBackupService : IDatabaseBackupService
             $"--password={AppSettings.DbPassWord} " +
             $"--protocol=tcp " +
             $"--set-gtid-purged=OFF " +
+            $"{externArgs} " +
             $"--column-statistics=0 " +
             $"-B {AppSettings.DbName} " +
             $"--tables {string.Join(" ", table)} " +
@@ -59,52 +60,6 @@ public class DatabaseBackupService : IDatabaseBackupService
         }
         catch { throw; }
         
-    }
-
-    public async Task<string> BackupDatabaseWithRoutinesAsync(string backupFile, params string[] table)
-    {
-        var command = $"mysqldump " +
-            $"--host={AppSettings.Host} " +
-            $"--port={AppSettings.Port} " +
-            $"--default-character-set=utf8 " +
-            $"--user={AppSettings.DbUserName} " +
-            $"--password={AppSettings.DbPassWord} " +
-            $"--protocol=tcp " +
-            $"--routines " +
-            $" --triggers " +
-            $"--set-gtid-purged=OFF " +
-            $"--column-statistics=0 " +
-            $"-B {AppSettings.DbName} " +
-            $"--tables {string.Join(" ", table)} " +
-            $"> {backupFile}";
-
-        // 在命令行中执行command
-        try
-        {
-            using var process = new Process();
-            process.StartInfo.FileName = "cmd.exe";
-            process.StartInfo.Arguments = $"/c {command}";
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.RedirectStandardError = true;
-            process.StartInfo.CreateNoWindow = true;
-            process.Start();
-            await process.WaitForExitAsync();
-            var output = process.StandardOutput.ReadToEnd();
-            var error = process.StandardError.ReadToEnd();
-
-            await SaveTimeInSettingsAsync(DateTime.Now);
-            LastBackupTime = DateTime.Now;
-
-            if (!string.IsNullOrEmpty(error))
-            {
-                throw new Exception(error);
-            }
-            await Task.CompletedTask;
-            return output;
-        }
-        catch { throw; }
-
     }
 
     public async Task InitializeAsync()
