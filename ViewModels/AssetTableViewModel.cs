@@ -141,7 +141,7 @@ public class AssetTableViewModel : ObservableRecipient, INavigationAware, INotif
                 try
                 {
                     await _assetDataService.ActivateUpdateList();
-                    for(var i = 0; i < NewItemNumber; i++)
+                    for (var i = 0; i < NewItemNumber; NewItemNumber--)
                     {
                         await _assetDataService.ActivateAdd(Source[i]);
                     }

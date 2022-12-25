@@ -143,7 +143,7 @@ public class ScrappingTableViewModel : ObservableRecipient, INavigationAware, IN
                 try
                 {
                     await _scrappingDataService.ActivateUpdateList();
-                    for (var i = 0; i < NewItemNumber; i++)
+                    for (var i = 0; i < NewItemNumber; NewItemNumber--)
                     {
                         await _scrappingDataService.ActivateAdd(Source[i]);
                     }

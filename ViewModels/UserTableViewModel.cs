@@ -116,7 +116,7 @@ public class UserTableViewModel : ObservableRecipient, INavigationAware, INotify
                 try
                 {
                     await _userDataService.ActivateUpdateList();
-                    for (var i = 0; i < NewItemNumber; i++)
+                    for (var i = 0; i < NewItemNumber; NewItemNumber--)
                     {
                         await _userDataService.ActivateAdd(Source[i]);
                     }

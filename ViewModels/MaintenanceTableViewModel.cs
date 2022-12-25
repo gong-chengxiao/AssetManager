@@ -142,7 +142,7 @@ public class MaintenanceTableViewModel : ObservableRecipient, INavigationAware, 
                 try
                 {
                     await _maintenanceDataService.ActivateUpdateList();
-                    for (var i = 0; i < NewItemNumber; i++)
+                    for (var i = 0; i < NewItemNumber; NewItemNumber--)
                     {
                         await _maintenanceDataService.ActivateAdd(Source[i]);
                     }
