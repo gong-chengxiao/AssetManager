@@ -128,8 +128,8 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
             {
                 try
                 {
-                    string[] selectedTables = await GetSelectedTable();
-                    if (selectedTables.Length == 0)
+                    List<string> selectedTables = new(await GetSelectedTable());
+                    if (selectedTables.Count == 0)
                     {
                         throw new Exception("No table selected".GetLocalized());
                     }
@@ -148,13 +148,13 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
                     }
                     if (ViewsChecked)
                     {
-                        selectedTables.Append(AppSettings.AssetView);
-                        selectedTables.Append(AppSettings.MaintenanceView);
-                        selectedTables.Append(AppSettings.ScrappingView);
-                        selectedTables.Append(AppSettings.UserView);
+                        selectedTables.Add(AppSettings.AssetView);
+                        selectedTables.Add(AppSettings.MaintenanceView);
+                        selectedTables.Add(AppSettings.ScrappingView);
+                        selectedTables.Add(AppSettings.UserView);
                         
                     }
-                    await _databaseBackupService.BackupDatabaseAsync(_backupFilePath, args.ToString(), selectedTables);
+                    await _databaseBackupService.BackupDatabaseAsync(_backupFilePath, args.ToString(), selectedTables.ToArray());
 
                 }
                 catch (Exception e)
