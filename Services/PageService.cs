@@ -17,7 +17,6 @@ public class PageService : IPageService
         Configure<HomeViewModel, HomePage>();
         Configure<AssetTableViewModel, AssetTablePage>();
         Configure<UserTableViewModel, UserTablePage>();
-        Configure<PurchaseTableViewModel, PurchaseTablePage>();
         Configure<MaintenanceTableViewModel, MaintenanceTablePage>();
         Configure<ScrappingTableViewModel, ScrappingTablePage>();
         Configure<SettingsViewModel, SettingsPage>();

@@ -70,7 +70,6 @@ public partial class App : Application
             services.AddSingleton<IScrappingDataService, ScrappingDataService>();
 
             // Core Services
-            services.AddSingleton<ISampleDataService, SampleDataService>();
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
@@ -80,8 +79,6 @@ public partial class App : Application
             services.AddTransient<ScrappingTablePage>();
             services.AddTransient<MaintenanceTableViewModel>();
             services.AddTransient<MaintenanceTablePage>();
-            services.AddTransient<PurchaseTableViewModel>();
-            services.AddTransient<PurchaseTablePage>();
             services.AddTransient<UserTableViewModel>();
             services.AddTransient<UserTablePage>();
             services.AddTransient<AssetTableViewModel>();
