@@ -119,19 +119,22 @@
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}"
                            Text="{x:Bind st:Strings.TablesText}"
                            Margin="0,8,0,8"/>
-                <ListView BorderThickness="1" Width="350" HorizontalAlignment="Left"
-                          BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}">
+                <StackPanel Padding="8,0,0,0"
+                            BorderThickness="1" Width="350" HorizontalAlignment="Left" Spacing="8"
+                            BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}">
                     <CheckBox Content="{x:Bind ViewModel.Tables[0]}"
-                          IsChecked="{x:Bind ViewModel.TableChecked[0]}"/>
+                          IsChecked="{x:Bind ViewModel.TableChecked[0], Mode=TwoWay}"/>
                     <CheckBox Content="{x:Bind ViewModel.Tables[1]}"
-                          IsChecked="{x:Bind ViewModel.TableChecked[1]}"/>
+                          IsChecked="{x:Bind ViewModel.TableChecked[1], Mode=TwoWay}"/>
                     <CheckBox Content="{x:Bind ViewModel.Tables[2]}"
-                          IsChecked="{x:Bind ViewModel.TableChecked[2]}"/>
+                          IsChecked="{x:Bind ViewModel.TableChecked[2], Mode=TwoWay}"/>
                     <CheckBox Content="{x:Bind ViewModel.Tables[3]}"
-                          IsChecked="{x:Bind ViewModel.TableChecked[3]}"/>
+                          IsChecked="{x:Bind ViewModel.TableChecked[3], Mode=TwoWay}"/>
                     <CheckBox Content="{x:Bind ViewModel.Tables[4]}"
-                          IsChecked="{x:Bind ViewModel.TableChecked[4]}"/>
-                </ListView>
+                          IsChecked="{x:Bind ViewModel.TableChecked[4], Mode=TwoWay}"/>
+                </StackPanel>
+                <CheckBox Margin="0,8,0,0" Content="{x:Bind ViewModel.RoutinesCheckedText}" 
+                          IsChecked="{x:Bind ViewModel.RoutinesChecked, Mode=TwoWay}"/>
                 <TextBlock Margin="0,8,0,0" Style="{ThemeResource BodyTextBlockStyle}"
                            Text="{x:Bind ViewModel.SelectFilePathText}"/>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">

@@ -23,6 +23,8 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
     private readonly IDatabaseBackupService _databaseBackupService;
     private DateTime _lastBackupTime;
     private string _greetingMessage;
+    public bool RoutinesChecked = false;
+    public string RoutinesCheckedText = "Dump with routines (views, triggers, procedures, functions)".GetLocalized();
     public bool[] TableChecked
     {
         get; set;
@@ -42,8 +44,8 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
         AppSettings.ScrappingTable,
         AppSettings.VendorTable,
     };
-    private string _backupFilePath;
-    public string BackupFilePath
+    private string? _backupFilePath;
+    public string? BackupFilePath
     {
         get => _backupFilePath;
         set
@@ -126,11 +128,18 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
                     {
                         throw new Exception("No table selected".GetLocalized());
                     }
-                    if (BackupFilePath == null)
+                    if (_backupFilePath == null)
                     {
                         throw new Exception("No backup file path selected".GetLocalized());
                     }
-                    await databaseBackupService.BackupDatabaseAsync(BackupFilePath, selectedTables);
+                    if (RoutinesChecked)
+                    {
+                        await _databaseBackupService.BackupDatabaseWithRoutinesAsync(_backupFilePath, selectedTables);
+                    }
+                    else
+                    {
+                        await _databaseBackupService.BackupDatabaseAsync(_backupFilePath, selectedTables);
+                    }
                 }
                 catch (Exception e)
                 {

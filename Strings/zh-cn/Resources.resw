@@ -261,6 +261,9 @@
   <data name="Dialog_WarningTitle" xml:space="preserve">
     <value>警告</value>
   </data>
+  <data name="Dump with routines (views, triggers, procedures, functions)" xml:space="preserve">
+    <value>同时导出视图、触发器、存储过程、函数</value>
+  </data>
   <data name="Engineering Training Center" xml:space="preserve">
     <value>工训中心</value>
   </data>
