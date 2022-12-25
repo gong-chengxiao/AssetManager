@@ -59,6 +59,18 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
             OnPropertyChanged();
         }
     }
+
+    private bool _processRing = false;
+    public bool ProcessRing
+    {
+        get => _processRing;
+        set
+        {
+            _processRing = value;
+            OnPropertyChanged();
+        }
+    }
+    
     public string GreetingMessage
     {
         get => _greetingMessage;
@@ -126,6 +138,7 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
         BackupCommand = new RelayCommand(
             async () =>
             {
+                ProcessRing = true;
                 try
                 {
                     List<string> selectedTables = new(await GetSelectedTable());
@@ -160,6 +173,10 @@ public class HomeViewModel : ObservableRecipient, INavigationAware, INotifyPrope
                 catch (Exception e)
                 {
                     await NotifyHelper.ShowError(e.Message);
+                }
+                finally
+                {
+                    ProcessRing = false;
                 }
             });
         ExploreCommand = new RelayCommand(

@@ -148,10 +148,12 @@
                             Content="{x:Bind ViewModel.ExploreText}"/>
                 </StackPanel>
 
-                <Button Margin="0,16,0,32"
+                <Button Margin="0,16,0,0"
                         Style="{StaticResource AccentButtonStyle}" 
                         Content="{x:Bind ViewModel.BackupRightnowText}"
                         Command="{x:Bind ViewModel.BackupCommand}"/>
+                <ProgressRing Margin="0,16,0,64" HorizontalAlignment="Left"
+                              IsActive="{x:Bind ViewModel.ProcessRing, Mode=TwoWay}"/>
 
             </StackPanel>
         </Grid>
