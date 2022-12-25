@@ -44,7 +44,7 @@
                     Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center" Width="80"/>
 
                 <ToggleSwitch Header="{x:Bind st:Strings.UseOtherDbText}" Margin="0,25,0,0" 
-                          x:Name="OtherDbToggle" IsOn="{x:Bind ViewModel.IsUseOtherDb}"/>
+                          x:Name="OtherDbToggle" IsOn="{x:Bind ViewModel.LoginForm.IsUseOtherDb, Mode=TwoWay}"/>
                 <StackPanel Visibility="{x:Bind OtherDbToggle.IsOn, Converter={StaticResource BooleanToVisibility},Mode=OneWay}">
                     <TextBox Text="{x:Bind ViewModel.LoginForm.Host,Mode=TwoWay}" Header="{x:Bind st:Strings.HostAddressText}" Margin="0,8,0,0" Width="350"/>
                     <TextBox Text="{x:Bind ViewModel.LoginForm.Port,Mode=TwoWay}" Header="{x:Bind st:Strings.PortText}" Margin="0,8,0,0" Width="100" HorizontalAlignment="Left"/>

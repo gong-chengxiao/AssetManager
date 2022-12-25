@@ -33,6 +33,9 @@ public class LoginConnectService : ILoginConnectService
     {
         UIElement shell = App.GetService<ShellPage>();
         App.MainWindow.Content = shell ?? new Frame();
+        App.MainWindow.Activate();
+
+        await Task.CompletedTask;
     }
 
 }

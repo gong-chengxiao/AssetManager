@@ -24,11 +24,6 @@ public class LoginViewModel : INotifyPropertyChanged
         get;
         set;
     }
-    public bool IsUseOtherDb
-    {
-        get;
-        set;
-    }
 
 
     private InfoBar? _messageInfoBar;
@@ -58,7 +53,6 @@ public class LoginViewModel : INotifyPropertyChanged
     public LoginViewModel(ILoginConnectService loginConnectService)
     {
         LoginForm = new();
-        IsUseOtherDb = false;
         _loginConnectService = loginConnectService;
         ProgressRingActive = false;
 
